@@ -1,4 +1,4 @@
-from binascii import hexlify
+from binascii import hexlify, unhexlify
 
 import esocrypt as es
 import random
@@ -29,4 +29,10 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
 def encrypt_field(data):
   text = data.encode('utf8')
   text = sc.encrypt(field_crypt_key(), text)
-  return str(hexlify(text))
+  return hexlify(text)
+
+
+def decrypt_field(data):
+  text = unhexlify(data)
+  text = sc.decrypt(field_crypt_key(), text)
+  return text.decode('utf8')
