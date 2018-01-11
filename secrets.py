@@ -1,4 +1,7 @@
+from binascii import hexlify
+
 import random
+import simplecrypt as sc
 import string
 
 FILE_CRYPT_KEY = "R5zDuzSfahgzSt8W~i]Gze^zdDw6eqH2L&foyhBj2ncAtbdnjymIy7Z'EzSoUvF{Cz8L(DtGqm[kcp]3Yg"
@@ -12,3 +15,9 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
   chars += string.digits if digits else ''
   chars += string.punctuation if punct else ''
   return ''.join(random.choices(chars, k=length))
+
+
+def encrypt_field(data):
+  text = data.encode('utf8')
+  text = sc.encrypt(FIELD_CRYPT_KEY, text)
+  return str(hexlify(text))
