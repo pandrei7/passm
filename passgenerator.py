@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter import *
 from tkinter.ttk import *
 
 import secrets
@@ -21,7 +20,7 @@ class PassGeneratorFrame(tk.Frame):
     label1.config(font=tkg.regular_font())
     label1.grid(row=1, column=0, sticky='w', padx=(10, 0), pady=(5, 0))
 
-    self.scale = tk.Scale(self, from_=1, to=100, orient=HORIZONTAL)
+    self.scale = tk.Scale(self, from_=1, to=100, orient=tk.HORIZONTAL)
     self.scale.config(length=500)
     self.scale.grid(row=2, column=0, padx=5, pady=5)
 
@@ -59,11 +58,11 @@ class PassGeneratorFrame(tk.Frame):
 
     self.entry = ttk.Entry(entry_container)
     self.entry.config(font=tkg.regular_font())
-    self.entry.pack(fill=BOTH)
+    self.entry.pack(fill=tk.BOTH)
 
     style.configure('PGF.TButton', font=tkg.regular_font())
-    self.button = ttk.Button(self, text='Generează',
-                             command=self.click, style='PGF.TButton')
+    self.button = ttk.Button(self, text='Generează')
+    self.button.config(command=self.click, style='PGF.TButton')
     self.button.grid(row=6, column=0, padx=(10, 0), pady=5)
 
   def click(self):
@@ -75,5 +74,5 @@ class PassGeneratorFrame(tk.Frame):
     password = secrets.random_password(self.scale.get(),
                 lower=lower, upper=upper, digits=digits, punct=punct)
 
-    self.entry.delete(0, END)
+    self.entry.delete(0, tk.END)
     self.entry.insert(0, password)
