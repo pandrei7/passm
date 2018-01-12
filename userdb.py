@@ -1,6 +1,12 @@
 import sqlite3
 
+class UserExistsException(Exception):
+  def __init__(self, name):
+    Exception.__init__(self, 'User with name "' + name + '" already exists')
+
+
 DB_PATH = 'dbs/users.db'
+
 
 def create_database():
   with sqlite3.connect(DB_PATH) as conn:
@@ -9,19 +15,22 @@ def create_database():
                  (name text, password text, crypt_key text);''')
 
 
-def get_users_by_name(name):
+def get_users_by_name_exact(name):
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
-    query_string = '%' + name + '%'
-    c.execute('SELECT * FROM users WHERE name LIKE ?;', (query_string,))
+    c.execute('SELECT * FROM users WHERE name LIKE ?;', (name,))
     return c.fetchall()
 
 
+def get_users_by_name(name):
+  query_string = '%' + name + '%'
+  return get_users_by_name_exact(query_string)
+
+
 def insert_user(user):
-  present = get_users_by_name(user.name)
+  present = get_users_by_name_exact(user.name)
   if len(present) > 0:
-    # TODO: Find a better exception to raise.
-    raise Exception
+    raise UserExistsException(user.name)
 
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
