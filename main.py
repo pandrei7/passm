@@ -4,7 +4,9 @@ from tkinter.ttk import *
 import tkglobals as tkg
 import tkinter as tk
 
+import usercreator
 import usermenu
+
 import user
 import userdb
 
@@ -106,7 +108,7 @@ class StartScreen(ttk.Frame):
       return
 
   def new_click(self):
-    pass
+    self.controller.show_user_creator_screen()
 
   def delete_click(self):
     pass
@@ -134,6 +136,11 @@ class MainApp(tk.Tk):
   def show_user_menu_screen(self, us):
     self.clear_screen()
     self.frame = usermenu.UserMenuScreen(self, us)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_user_creator_screen(self):
+    self.clear_screen()
+    self.frame = usercreator.UserCreatorScreen(self)
     self.frame.pack(fill=tk.BOTH)
 
 
