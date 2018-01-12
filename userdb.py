@@ -1,9 +1,16 @@
 import os
+import secrets
 import sqlite3
+import user
 
 class UserExistsException(Exception):
   def __init__(self, name):
     Exception.__init__(self, 'User with name "' + name + '" already exists')
+
+
+class UserNotFoundException(Exception):
+  def __init__(self, name):
+    Exception.__init__(self, 'User with name "' + name + '" not found')
 
 
 DB_DIR = 'dbs'
@@ -48,3 +55,12 @@ def delete_user(us):
                  WHERE name=? AND password=?
                  AND crypt_key=?;''', us.db_data())
     conn.commit()
+
+
+def password_check(name, password):
+  us = get_users_by_name_exact(name)
+  if len(us) <= 0:
+    raise UserNotFoundException(name)
+
+  us = user.unpack(us[0])
+  return password == secrets.decrypt_field(us.password)
