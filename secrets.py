@@ -23,6 +23,9 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
   chars += string.ascii_uppercase if upper else ''
   chars += string.digits if digits else ''
   chars += string.punctuation if punct else ''
+
+  if len(chars) <= 0:
+    return ''
   return ''.join(random.choices(chars, k=length))
 
 
