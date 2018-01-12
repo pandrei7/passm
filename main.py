@@ -4,9 +4,9 @@ from tkinter.ttk import *
 import tkglobals as tkg
 import tkinter as tk
 
+import usermenu
 import user
 import userdb
-import usermenu
 
 class StartScreen(ttk.Frame):
   def __init__(self, parent):
@@ -98,7 +98,7 @@ class StartScreen(ttk.Frame):
       if userdb.password_check(name, password):
         us = userdb.get_users_by_name(name)[0]
         us = user.unpack(us)
-        self.controller.show_user_menu(us)
+        self.controller.show_user_menu_screen(us)
       else:
         self.error_label.config(text='Parolă greșită.')
     except userdb.UserNotFoundException:
@@ -131,7 +131,7 @@ class MainApp(tk.Tk):
     self.frame = StartScreen(self)
     self.frame.pack(fill=tk.BOTH)
 
-  def show_user_menu(self, us):
+  def show_user_menu_screen(self, us):
     self.clear_screen()
     self.frame = usermenu.UserMenuScreen(self, us)
     self.frame.pack(fill=tk.BOTH)
