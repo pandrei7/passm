@@ -15,59 +15,70 @@ class StartScreen(tk.Frame):
 
     style = ttk.Style()
 
-    container1 = ttk.Frame(self)
-    container1 .grid(row=0, column=0, sticky='new', padx=10)
+    self.grid_rowconfigure(0, weight=1)
+    self.grid_rowconfigure(2, weight=1)
+    self.grid_columnconfigure(0, weight=1)
+    self.grid_columnconfigure(2, weight=1)
+
+    container = ttk.Frame(self)
+    container.grid(row=1, column=1, sticky='nsew', padx=10)
+    container.grid_rowconfigure(0, weight=1)
+    container.grid_rowconfigure(2, weight=1)
+    container.grid_columnconfigure(0, weight=1)
+    container.grid_columnconfigure(2, weight=1)
+
+    container_top = ttk.Frame(container)
+    container_top.grid(row=0, column=0, pady=(30, 0))
 
     self.image = tk.PhotoImage(file='images/big.gif')
-    self.image_label = ttk.Label(container1 , image=self.image)
+    self.image_label = ttk.Label(container_top, image=self.image)
     self.image_label.grid(row=0, column=0, sticky='w')
 
-    self.title = ttk.Label(container1 , text='Manager parolă')
+    self.title = ttk.Label(container_top, text='Manager parolă')
     self.title.config(font=tkg.hyper_title_font())
     self.title.grid(row=0, column=1, sticky='e', padx=10, pady=10)
 
-    container2 = ttk.Frame(self)
-    container2.grid(row=1, column=0, sticky='ew', padx=10, pady=10)
+    container_bot = ttk.Frame(container)
+    container_bot.grid(row=1, column=0, pady=(40, 0))
+    container_bot.grid_rowconfigure(0, weight=1)
+    container_bot.grid_rowconfigure(2, weight=1)
+    container_bot.grid_columnconfigure(0, weight=1)
+    container_bot.grid_columnconfigure(2, weight=1)
 
-    container2.grid_rowconfigure(0, weight=1)
-    container2.grid_rowconfigure(2, weight=1)
-    container2.grid_columnconfigure(0, weight=1)
-    container2.grid_columnconfigure(2, weight=1)
+    container_bot2 = ttk.Frame(container_bot)
+    container_bot2.grid(row=1, column=1)
 
-    container3 = ttk.Frame(container2)
-    container3.grid(row=1, column=1)
-
-    self.label1 = ttk.Label(container3, text='Utilizator')
+    self.label1 = ttk.Label(container_bot2, text='Utilizator')
     self.label1.config(font=tkg.regular_font())
     self.label1.grid(row=0, column=0, sticky='w')
 
-    self.user_entry = ttk.Entry(container3)
+    self.user_entry = ttk.Entry(container_bot2)
     self.user_entry.config(font=tkg.regular_font())
     self.user_entry.grid(row=1, column=0, sticky='ew')
 
-    self.label2 = ttk.Label(container3, text='Parolă')
+    self.label2 = ttk.Label(container_bot2, text='Parolă')
     self.label2.config(font=tkg.regular_font())
     self.label2.grid(row=2, column=0, sticky='w', pady=(10, 0))
 
-    self.pass_entry = ttk.Entry(container3, show='*')
+    self.pass_entry = ttk.Entry(container_bot2, show='*')
     self.pass_entry.config(font=tkg.regular_font())
     self.pass_entry.grid(row=3, column=0, sticky='ew')
 
-    self.error_label = tk.Label(container3, text='')
+    self.error_label = tk.Label(container_bot2, text='')
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
     self.error_label.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
     style.configure('SS.TButton', font=tkg.regular_font())
 
-    self.enter_button = ttk.Button(container3, text='Intră')
+    self.enter_button = ttk.Button(container_bot2, text='Intră')
     self.enter_button.config(style='SS.TButton', command=self.enter_click)
     self.enter_button.grid(row=5, column=0, sticky='ew', pady=(10, 5))
 
-    self.new_button = ttk.Button(container3, text='Utilizator nou')
+    self.new_button = ttk.Button(container_bot2, text='Utilizator nou')
     self.new_button.config(style='SS.TButton', command=self.new_click)
     self.new_button.grid(row=6, column=0, sticky='ew', pady=5)
 
-    self.delete_button = ttk.Button(container3, text='Șterge-mi contul')
+    self.delete_button = ttk.Button(container_bot2, text='Șterge-mi contul')
     self.delete_button.config(style='SS.TButton', command=self.delete_click)
     self.delete_button.grid(row=7, column=0, sticky='ew', pady=(5, 10))
 
