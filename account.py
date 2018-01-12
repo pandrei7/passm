@@ -17,3 +17,6 @@ def create_account(name, email, username, password, us):
   key = secrets.decrypt_field(us.crypt_key)
   password = secrets.encrypt_data(key, password)
   return Account(name, email, username, password)
+
+def unpack(acc_tuple):
+  return Account(acc_tuple[0], acc_tuple[1], acc_tuple[2], acc_tuple[3])

@@ -16,3 +16,7 @@ def create_user(name, password):
   password = secrets.encrypt_field(password)
   crypt_key = secrets.encrypt_field(secrets.random_password())
   return User(name, password, crypt_key)
+
+
+def unpack(us_tuple):
+  return User(us_tuple[0], us_tuple[1], us_tuple[2])
