@@ -7,7 +7,7 @@ import tkinter as tk
 
 class UserMenuScreen(ttk.Frame):
   def __init__(self, parent, us):
-    tk.Frame.__init__(self, parent)
+    ttk.Frame.__init__(self, parent)
     self.controller = parent
 
     style = ttk.Style()
