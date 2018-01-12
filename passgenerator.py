@@ -77,9 +77,3 @@ class PassGeneratorFrame(tk.Frame):
 
     self.entry.delete(0, END)
     self.entry.insert(0, password)
-
-
-root = tk.Tk()
-gen = PassGeneratorFrame(root)
-gen.grid()
-root.mainloop()
