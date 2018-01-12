@@ -1,3 +1,4 @@
+import os
 import sqlite3
 
 class UserExistsException(Exception):
@@ -5,10 +6,12 @@ class UserExistsException(Exception):
     Exception.__init__(self, 'User with name "' + name + '" already exists')
 
 
+DB_DIR = 'dbs'
 DB_PATH = 'dbs/users.db'
 
 
 def create_database():
+  os.mkdir(DB_DIR)
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
     c.execute('''CREATE TABLE users
