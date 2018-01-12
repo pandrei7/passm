@@ -103,6 +103,7 @@ class StartScreen(ttk.Frame):
         self.controller.show_user_menu_screen(us)
       else:
         self.error_label.config(text='Parolă greșită.')
+        self.clear_password_field()
     except userdb.UserNotFoundException:
       self.error_label.config(text='Nu am găsit acest utilizator.')
       return
@@ -112,6 +113,9 @@ class StartScreen(ttk.Frame):
 
   def delete_click(self):
     pass
+
+  def clear_password_field(self):
+    self.pass_entry.delete(0, tk.END)
 
 
 class MainApp(tk.Tk):
