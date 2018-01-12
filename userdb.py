@@ -45,6 +45,6 @@ def delete_user(us):
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
     c.execute('''DELETE FROM users
-                      WHERE name=? AND password=?
-                      AND crypt_key=?;''', us.db_data())
+                 WHERE name=? AND password=?
+                 AND crypt_key=?;''', us.db_data())
     conn.commit()
