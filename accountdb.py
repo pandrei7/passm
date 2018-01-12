@@ -31,6 +31,10 @@ def get_accounts_by_name(us, name):
   return get_accounts_by_name_exact(us, query_string)
 
 
+def get_all_accounts(us):
+  return get_accounts_by_name(us, '')
+
+
 def insert_account(us, acc):
   present = get_accounts_by_name(us, acc.name)
   if len(present) > 0:
