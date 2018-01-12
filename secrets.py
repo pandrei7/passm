@@ -26,13 +26,21 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
   return ''.join(random.choices(chars, k=length))
 
 
-def encrypt_field(data):
+def encrypt_data(key, data):
   text = data.encode('utf8')
-  text = sc.encrypt(field_crypt_key(), text)
+  text = sc.encrypt(key, text)
   return hexlify(text)
 
 
-def decrypt_field(data):
+def encrypt_field(data):
+  return encrypt_data(field_crypt_key(), data)
+
+
+def decrypt_data(key, data):
   text = unhexlify(data)
-  text = sc.decrypt(field_crypt_key(), text)
+  text = sc.decrypt(key, text)
   return text.decode('utf8')
+
+
+def decrypt_field(data):
+  return decrypt_data(field_crypt_key(), data)
