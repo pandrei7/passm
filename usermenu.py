@@ -18,7 +18,7 @@ class UserMenuScreen(ttk.Frame):
     self.grid_columnconfigure(2, weight=1)
 
     container = ttk.Frame(self)
-    container.grid(row=1, column=1, sticky='nsew', padx=10, pady=10)
+    container.grid(row=1, column=1, sticky='nsew', padx=10, pady=20)
 
     self.title = ttk.Label(container, text=us.name)
     self.title.config(font=tkg.title_font())
