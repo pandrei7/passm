@@ -13,6 +13,6 @@ class Account():
     return (self.name, self.email, self.username, self.password)
 
 
-def create_account(name, email, username, password):
-  password = secrets.encrypt_field(password)
+def create_account(name, email, username, password, user_crypt_key):
+  password = secrets.encrypt_data(user_crypt_key, password)
   return Account(name, email, username, password)
