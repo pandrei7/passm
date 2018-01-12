@@ -30,21 +30,21 @@ def get_users_by_name(name):
   return get_users_by_name_exact(query_string)
 
 
-def insert_user(user):
-  present = get_users_by_name_exact(user.name)
+def insert_user(us):
+  present = get_users_by_name_exact(us.name)
   if len(present) > 0:
-    raise UserExistsException(user.name)
+    raise UserExistsException(us.name)
 
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
-    c.execute('INSERT INTO users VALUES(?,?,?);', user.db_data())
+    c.execute('INSERT INTO users VALUES(?,?,?);', us.db_data())
     conn.commit()
 
 
-def delete_user(user):
+def delete_user(us):
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
     c.execute('''DELETE FROM users
                       WHERE name=? AND password=?
-                      AND crypt_key=?;''', user.db_data())
+                      AND crypt_key=?;''', us.db_data())
     conn.commit()
