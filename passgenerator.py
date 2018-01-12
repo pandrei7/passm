@@ -5,7 +5,7 @@ import secrets
 import tkglobals as tkg
 import tkinter as tk
 
-class PassGeneratorFrame(tk.Frame):
+class PassGeneratorFrame(ttk.Frame):
   def __init__(self, parent):
     ttk.Frame.__init__(self, parent)
     self.parent = parent

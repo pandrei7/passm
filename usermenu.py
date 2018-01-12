@@ -5,7 +5,7 @@ import passgenerator
 import tkglobals as tkg
 import tkinter as tk
 
-class UserMenuScreen(tk.Frame):
+class UserMenuScreen(ttk.Frame):
   def __init__(self, parent, us):
     tk.Frame.__init__(self, parent)
     self.controller = parent

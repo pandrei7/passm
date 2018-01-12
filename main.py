@@ -8,7 +8,7 @@ import user
 import userdb
 import usermenu
 
-class StartScreen(tk.Frame):
+class StartScreen(ttk.Frame):
   def __init__(self, parent):
     tk.Frame.__init__(self, parent)
     self.controller = parent
