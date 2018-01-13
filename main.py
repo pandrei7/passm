@@ -39,7 +39,7 @@ class StartScreen(ttk.Frame):
     self.image_label = ttk.Label(container_top, image=self.image)
     self.image_label.grid(row=0, column=0, sticky='w')
 
-    self.title = ttk.Label(container_top, text='Manager parolă')
+    self.title = ttk.Label(container_top, text='Manager parole')
     self.title.config(font=tkg.hyper_title_font())
     self.title.grid(row=0, column=1, sticky='e', padx=10, pady=10)
 
@@ -130,7 +130,7 @@ class MainApp(tk.Tk):
   def __init__(self, *args, **kwargs):
     tk.Tk.__init__(self, *args, **kwargs)
     self.geometry('500x600')
-    self.title('Manager parolă')
+    self.title('Manager parole')
     self.resizable(width=False, height=False)
 
     self.frame = None
