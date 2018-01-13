@@ -96,7 +96,12 @@ class AccountDisplayScreen(ttk.Frame):
     self.controller.show_account_change_screen(self.us, acc)
 
   def delete_click(self):
-    pass
+    selection = self.listbox.curselection()
+    acc_name = self.listbox.get(selection[0])
+    acc = accountdb.get_accounts_by_name_exact(self.us, acc_name)[0]
+    acc = account.unpack(acc)
+    accountdb.delete_account(self.us, acc)
+    self.load_accounts()
 
   def back_click(self):
     self.controller.show_user_menu_screen(self.us)
