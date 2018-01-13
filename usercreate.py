@@ -123,9 +123,9 @@ class UserCreateScreen(ttk.Frame):
     try:
       userdb.insert_user(us)
       accountdb.create_database(us)
-      self.error_label.config(text='Utilizatorul a fost creat cu succes')
+      self.error_label.config(text='Utilizatorul a fost creat cu succes.')
     except userdb.UserExistsException:
-      self.error_label.config(text='Utilizatorul există deja')
+      self.error_label.config(text='Utilizatorul există deja.')
     self.clear_password_fields()
 
   def clear_password_fields(self):
