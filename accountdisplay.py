@@ -90,6 +90,9 @@ class AccountDisplayScreen(ttk.Frame):
 
   def mod_click(self):
     selection = self.listbox.curselection()
+    if len(selection) <= 0:
+      return
+
     acc_name = self.listbox.get(selection[0])
     acc = accountdb.get_accounts_by_name_exact(self.us, acc_name)[0]
     acc = account.unpack(acc)
@@ -97,6 +100,9 @@ class AccountDisplayScreen(ttk.Frame):
 
   def delete_click(self):
     selection = self.listbox.curselection()
+    if len(selection) <= 0:
+      return
+
     acc_name = self.listbox.get(selection[0])
     acc = accountdb.get_accounts_by_name_exact(self.us, acc_name)[0]
     acc = account.unpack(acc)
