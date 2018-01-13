@@ -99,8 +99,13 @@ class StartScreen(ttk.Frame):
       self.error_label.config(text='Introdu parola.')
       return
 
+    self.error_label.config(text='Verific parola...')
+    self.error_label.update()
+
     try:
       if userdb.password_check(name, password):
+        self.error_label.config(text='Intru în cont...')
+        self.error_label.update()
         us = userdb.get_users_by_name(name)[0]
         us = user.unpack(us)
         self.controller.show_user_menu_screen(us)
