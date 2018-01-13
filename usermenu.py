@@ -9,6 +9,7 @@ class UserMenuScreen(ttk.Frame):
   def __init__(self, parent, us):
     ttk.Frame.__init__(self, parent)
     self.controller = parent
+    self.us = us
 
     style = ttk.Style()
 
@@ -39,7 +40,7 @@ class UserMenuScreen(ttk.Frame):
     self.back_button.grid(row=3, column=0, padx=10, pady=7)
 
   def acc_click(self):
-    pass
+    self.controller.show_account_display_screen(self.us)
 
   def pass_click(self):
     son = tk.Toplevel(self)

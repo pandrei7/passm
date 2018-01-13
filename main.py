@@ -4,6 +4,7 @@ from tkinter.ttk import *
 import tkglobals as tkg
 import tkinter as tk
 
+import accountdisplay
 import usercreate
 import userdelete
 import usermenu
@@ -151,6 +152,11 @@ class MainApp(tk.Tk):
   def show_user_delete_screen(self):
     self.clear_screen()
     self.frame = userdelete.UserDeleteScreen(self)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_account_display_screen(self, us):
+    self.clear_screen()
+    self.frame = accountdisplay.AccountDisplayScreen(self, us)
     self.frame.pack(fill=tk.BOTH)
 
 
