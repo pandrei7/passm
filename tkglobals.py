@@ -21,6 +21,13 @@ def bold_regular_font_tuple():
   return ('Helvetica', 14, 'bold')
 
 
+def button_regular_font():
+  return font.Font(family='Helvetica', size=12)
+
+def button_regular_font_tuple():
+  return ('Helvetica', 12)
+
+
 def title_font():
   return font.Font(family='Helvetica', size=18, weight='bold')
 
