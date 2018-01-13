@@ -52,7 +52,7 @@ class UserDeleteScreen(ttk.Frame):
     self.pass_entry2.grid(row=6, column=0, sticky='ew', pady=(5, 0))
 
     self.error_label = tk.Label(container, text='')
-    self.error_label.config(font=tkg.regular_font(), fg='red')
+    self.error_label.config(font=tkg.small_regular_font(), fg='red')
     self.error_label.grid(row=7, column=0, pady=(10, 0))
 
     but_container = ttk.Frame(container)
@@ -83,4 +83,47 @@ class UserDeleteScreen(ttk.Frame):
     self.controller.show_start_screen()
 
   def delete_click(self):
-    pass
+    name = self.user_entry.get()
+    if len(name) <= 0:
+      self.error_label.config(text='Introdu numele utilizatorului.')
+      self.clear_password_fields()
+      return
+
+    pass1 = self.pass_entry1.get()
+    pass2 = self.pass_entry2.get()
+    if len(pass1) <= 0 or len(pass2) <= 0:
+      self.error_label.config(text='Introdu parolele.')
+      self.clear_password_fields()
+      return
+
+    if pass1 != pass2:
+      self.error_label.config(text='Parolele nu corespund.')
+      self.clear_password_fields()
+      return
+
+    self.remove_from_database(name, pass1)
+    self.clear_password_fields()
+
+  def remove_from_database(self, name, password):
+    us = userdb.get_users_by_name_exact(name)
+    if len(us) <= 0:
+      self.error_label.config(text='Nu am găsit niciun utilizator cu acest nume.')
+      return
+    if len(us) > 1:
+      self.error_label.config(text='Chestia asta nu trebuia să se întâmple...')
+      return
+
+    try:
+      if userdb.password_check(name, password):
+        us = user.unpack(us[0])
+        userdb.delete_user(us)
+        accountdb.delete_database(us)
+        self.error_label.config(text='Contul ' + name + '\na fost eliminat cu succes.')
+      else:
+        self.error_label.config(text='Parolă greșită.')
+    except userdb.UserNotFoundException:
+      self.error_label.config(text="Are you trying to cheat?\nYou're so funny, " + name + ".")
+
+  def clear_password_fields(self):
+    self.pass_entry1.delete(0, tk.END)
+    self.pass_entry2.delete(0, tk.END)
