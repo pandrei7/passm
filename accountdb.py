@@ -1,5 +1,5 @@
 import sqlite3
-import userdb
+import user
 
 class AccountExistsException(Exception):
   def __init__(self, name):
@@ -7,7 +7,7 @@ class AccountExistsException(Exception):
 
 
 def get_db_path(us):
-  return userdb.DB_DIR + '/' + us.name + '.db'
+  return 'dbs/' + us.name + '.db'
 
 
 def create_database(us):
