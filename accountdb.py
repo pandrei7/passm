@@ -63,3 +63,20 @@ def delete_account(us, acc):
                  WHERE name=? AND email=?
                  AND username=? AND password=?;''', acc.db_data())
     conn.commit()
+
+
+def update_account_data(us, acc):
+  path = get_db_path(us)
+  with sqlite3.connect(path) as conn:
+    c = conn.cursor()
+    c.execute('''UPDATE accounts
+                 SET name=?, email=?, username=?, password=?
+                 WHERE name=?''', (*acc.db_data(), acc.name))
+    conn.commit()
+
+
+def change_account(us, acc):
+  if len(get_accounts_by_name_exact(us, acc.name)) <= 0:
+    insert_account(us, acc)
+  else:
+    update_account_data(us, acc)
