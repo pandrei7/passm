@@ -155,6 +155,10 @@ class MainApp(tk.Tk):
 
 
 def main():
+  try:
+    userdb.create_database()
+  except FileExistsError:
+    pass
   app = MainApp()
   app.mainloop()
 

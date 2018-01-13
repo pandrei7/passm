@@ -14,7 +14,8 @@ class UserNotFoundException(Exception):
 
 
 DB_DIR = 'dbs'
-DB_PATH = 'dbs/users.db'
+DB_NAME = '.supercalifragilistic'
+DB_PATH = DB_DIR + '/' + DB_NAME + '.db'
 
 
 def create_database():
