@@ -20,7 +20,10 @@ def create_database(us):
 
 
 def delete_database(us):
-  os.remove(get_db_path(us))
+  try:
+    os.remove(get_db_path(us))
+  except:
+    pass
 
 
 def get_accounts_by_name_exact(us, name):
