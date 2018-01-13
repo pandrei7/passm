@@ -99,6 +99,11 @@ class UserCreateScreen(ttk.Frame):
       self.clear_password_fields()
       return
 
+    if name == userdb.DB_NAME:
+      self.error_label.config(text='Ai ales un nume interesant, dar\neste deja rezervat. Îmi pare rău.')
+      self.clear_password_fields()
+      return
+
     pass1 = self.pass_entry1.get()
     pass2 = self.pass_entry2.get()
     if len(pass1) <= 0 or len(pass2) <= 0:
