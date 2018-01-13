@@ -69,7 +69,7 @@ class AccountChangeScreen(ttk.Frame):
 
     self.error_label = tk.Label(container, text='')
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
-    self.error_label.grid(row=9, column=0, pady=(10, 0))
+    self.error_label.grid(row=9, column=0, pady=(10, 10))
 
     but_container = ttk.Frame(container)
     but_container.grid(row=10, column=0, sticky='ew')
