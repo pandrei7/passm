@@ -89,7 +89,11 @@ class AccountDisplayScreen(ttk.Frame):
     self.mod_click()
 
   def mod_click(self):
-    pass
+    selection = self.listbox.curselection()
+    acc_name = self.listbox.get(selection[0])
+    acc = accountdb.get_accounts_by_name_exact(self.us, acc_name)[0]
+    acc = account.unpack(acc)
+    self.controller.show_account_change_screen(self.us, acc)
 
   def delete_click(self):
     pass

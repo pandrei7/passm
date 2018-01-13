@@ -124,9 +124,9 @@ class AccountChangeScreen(ttk.Frame):
     if self.acc is None:
       return
 
-    self.name_entry.config(state='disabled')
     self.name_entry.delete(0, tk.END)
     self.name_entry.insert(0, self.acc.name)
+    self.name_entry.config(state='disabled')
 
     self.email_entry.delete(0, tk.END)
     self.email_entry.insert(0, self.acc.email)
