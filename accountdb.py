@@ -1,3 +1,4 @@
+import os
 import sqlite3
 import user
 
@@ -16,6 +17,10 @@ def create_database(us):
     c = conn.cursor()
     c.execute('''CREATE TABLE accounts
                  (name text, email text, username text, password text);''')
+
+
+def delete_database(us):
+  os.remove(get_db_path(us))
 
 
 def get_accounts_by_name_exact(us, name):
