@@ -39,6 +39,8 @@ class AccountDisplayScreen(ttk.Frame):
                         yscrollcommand=self.scrollbar.set)
     self.listbox.pack(side=tk.LEFT, fill=tk.Y)
 
+    self.scrollbar.config(command=self.listbox.yview)
+
     self.listbox.bind('<Double-Button-1>', self.mod_click_decorator)
     self.load_accounts()
 
