@@ -5,6 +5,7 @@ import tkglobals as tkg
 import tkinter as tk
 
 import usercreate
+import userdelete
 import usermenu
 
 import user
@@ -112,7 +113,7 @@ class StartScreen(ttk.Frame):
     self.controller.show_user_create_screen()
 
   def delete_click(self):
-    pass
+    self.controller.show_user_delete_screen()
 
   def clear_password_field(self):
     self.pass_entry.delete(0, tk.END)
@@ -145,6 +146,11 @@ class MainApp(tk.Tk):
   def show_user_create_screen(self):
     self.clear_screen()
     self.frame = usercreate.UserCreateScreen(self)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_user_delete_screen(self):
+    self.clear_screen()
+    self.frame = userdelete.UserDeleteScreen(self)
     self.frame.pack(fill=tk.BOTH)
 
 
