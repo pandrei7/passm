@@ -70,7 +70,7 @@ class StartScreen(ttk.Frame):
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
     self.error_label.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
-    style.configure('SS.TButton', font=tkg.regular_font())
+    style.configure('SS.TButton', font=tkg.button_regular_font())
 
     self.enter_button = ttk.Button(container_bot2, text='Intră')
     self.enter_button.config(style='SS.TButton', command=self.enter_click)

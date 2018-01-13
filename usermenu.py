@@ -24,7 +24,7 @@ class UserMenuScreen(ttk.Frame):
     self.title.config(font=tkg.title_font())
     self.title.grid(row=0, column=0, sticky='w', padx=15, pady=(10, 20))
 
-    style.configure('UMS.TButton', font=tkg.regular_font())
+    style.configure('UMS.TButton', font=tkg.button_regular_font())
 
     self.acc_button = ttk.Button(container, text='Conturi', width=25)
     self.acc_button.config(command=self.acc_click, style='UMS.TButton')

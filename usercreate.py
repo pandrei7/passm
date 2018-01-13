@@ -69,7 +69,7 @@ class UserCreateScreen(ttk.Frame):
     but_container2 = ttk.Frame(but_container)
     but_container2.grid(row=1, column=1, pady=(10, 0))
 
-    style.configure('UCS.TButton', font=tkg.regular_font())
+    style.configure('UCS.TButton', font=tkg.button_regular_font_tuple())
 
     self.back_button = ttk.Button(but_container2, text='Înapoi')
     self.back_button.config(style='UCS.TButton', command=self.back_click)
