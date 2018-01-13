@@ -4,6 +4,7 @@ from tkinter.ttk import *
 import tkglobals as tkg
 import tkinter as tk
 
+import accountchange
 import accountdisplay
 import usercreate
 import userdelete
@@ -157,6 +158,11 @@ class MainApp(tk.Tk):
   def show_account_display_screen(self, us):
     self.clear_screen()
     self.frame = accountdisplay.AccountDisplayScreen(self, us)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_account_change_screen(self, us, acc):
+    self.clear_screen()
+    self.frame = accountchange.AccountChangeScreen(self, us, acc)
     self.frame.pack(fill=tk.BOTH)
 
 

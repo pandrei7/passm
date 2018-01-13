@@ -81,7 +81,7 @@ class AccountDisplayScreen(ttk.Frame):
       self.listbox.insert(tk.END, a.name)
 
   def add_click(self):
-    pass
+    self.controller.show_account_change_screen(self.us, None)
 
   def mod_click_decorator(self, aux):
     self.mod_click()
@@ -98,14 +98,3 @@ class AccountDisplayScreen(ttk.Frame):
   def search_click(self):
     query = self.search_entry.get()
     self.load_accounts(query)
-
-
-import userdb
-
-aux = userdb.get_users_by_name('admin')[0]
-aux = user.unpack(aux)
-
-root = tk.Tk()
-main = AccountDisplayScreen(root, aux)
-main.pack()
-root.mainloop()
