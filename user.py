@@ -14,7 +14,7 @@ class User():
 
 def create_user(name, password):
   password = secrets.encrypt_field(password)
-  crypt_key = secrets.encrypt_field(secrets.random_password())
+  crypt_key = secrets.encrypt_field(secrets.random_fernet_key())
   return User(name, password, crypt_key)
 
 

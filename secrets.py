@@ -1,20 +1,18 @@
-from binascii import hexlify, unhexlify
+from cryptography.fernet import Fernet
 
 import esocrypt as es
 import random
-import simplecrypt as sc
 import string
 
-FILE_CRYPT_KEY = "R5zDuzSfahgzSt8W~i]Gze^zdDw6eqH2L&foyhBj2ncAtbdnjymIy7Z'EzSoUvF{Cz8L(DtGqm[kcp]3Yg"
-FIELD_CRYPT_KEY = 'D1fClnCoF(Zuw~7N~fhPyekV!rx6qcRtbym[jyc`6g_bqbyE giW{5r"PqegezCfKq1aks~IcKfv~br8xgFuFmW Xpe]5NwFjW%k`lgon3Sh'
-
-
-def file_crypt_key():
-  return es.decrypt(FILE_CRYPT_KEY)
+FIELD_CRYPT_KEY = r'C8kQQtbFrOM!mf4SjdqU4p)K\iV9knyfG O!Wlrk2MPDfcSCduDT68L!v%yBR>KTe\1JNj3N4xPcALm2VXEUCyy6EvDW9aPu4'
 
 
 def field_crypt_key():
   return es.decrypt(FIELD_CRYPT_KEY)
+
+
+def random_fernet_key():
+  return Fernet.generate_key().decode('utf8')
 
 
 def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
@@ -30,9 +28,10 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
 
 
 def encrypt_data(key, data):
+  key = key.encode('utf8')
   text = data.encode('utf8')
-  text = sc.encrypt(key, text)
-  return hexlify(text)
+  f = Fernet(key)
+  return f.encrypt(text).decode('utf8')
 
 
 def encrypt_field(data):
@@ -40,9 +39,10 @@ def encrypt_field(data):
 
 
 def decrypt_data(key, data):
-  text = unhexlify(data)
-  text = sc.decrypt(key, text)
-  return text.decode('utf8')
+  key = key.encode('utf8')
+  text = data.encode('utf8')
+  f = Fernet(key)
+  return f.decrypt(text).decode('utf8')
 
 
 def decrypt_field(data):
