@@ -15,7 +15,7 @@ def create_database(us):
   path = get_db_path(us)
   with sqlite3.connect(path) as conn:
     c = conn.cursor()
-    c.execute('''CREATE TABLE accounts
+    c.execute('''CREATE TABLE IF NOT EXISTS accounts
                  (name text, email text, username text, password text);''')
 
 
