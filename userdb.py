@@ -19,10 +19,10 @@ DB_PATH = DB_DIR + '/' + DB_NAME + '.db'
 
 
 def create_database():
-  os.mkdir(DB_DIR)
+  os.makedirs(DB_DIR, exist_ok=True)
   with sqlite3.connect(DB_PATH) as conn:
     c = conn.cursor()
-    c.execute('''CREATE TABLE users
+    c.execute('''CREATE TABLE IF NOT EXISTS users
                  (name text, password text, crypt_key text);''')
 
 
