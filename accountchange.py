@@ -6,6 +6,7 @@ import tkinter as tk
 
 import account
 import accountdb
+import hidebutton
 import passgenerator
 import secrets
 import user
@@ -62,10 +63,15 @@ class AccountChangeScreen(ttk.Frame):
     self.label4.config(font=tkg.regular_font())
     self.label4.grid(row=7, column=0, sticky='w', padx=5, pady=(10, 0))
 
-    self.pass_entry = ttk.Entry(container)
+    pass_container = ttk.Frame(container)
+    pass_container.grid(row=8, column=0, sticky='ew')
+
+    self.pass_entry = ttk.Entry(pass_container, show='*', width=30)
     self.pass_entry.config(font=tkg.regular_font())
-    self.pass_entry.grid(row=8, column=0, sticky='ew', padx=(0, 10),
-                                                       pady=(5, 0))
+    self.pass_entry.grid(row=0, column=0, padx=(0, 10), pady=(5, 0))
+
+    self.hide_button = hidebutton.HideButton(pass_container, self.pass_entry)
+    self.hide_button.grid(row=0, column=1, padx=(0, 10), pady=(5, 0))
 
     self.error_label = tk.Label(container, text='')
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
