@@ -123,6 +123,7 @@ class AccountChangeScreen(ttk.Frame):
   def pass_click(self):
     son = tk.Toplevel(self)
     son.wm_title('Generator parolă')
+    son.wm_resizable(width=False, height=False)
     gen = passgenerator.PassGeneratorFrame(son)
     gen.grid()
 
