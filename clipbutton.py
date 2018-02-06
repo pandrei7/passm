@@ -21,7 +21,7 @@ class ClipButton(tk.Button):
         self.config(command=self.click)
 
     def pop_up(self):
-        showinfo(title=self.title, message=self.message)
+        showinfo(title=self.title, message=self.message, parent=self)
 
     def click(self):
         r = tk.Tk()
