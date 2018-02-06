@@ -1,6 +1,7 @@
 from tkinter import ttk
 from tkinter.ttk import *
 
+import hidebutton
 import secrets
 import tkglobals as tkg
 import tkinter as tk
@@ -21,7 +22,7 @@ class PassGeneratorFrame(ttk.Frame):
     label1.grid(row=1, column=0, sticky='w', padx=(10, 0), pady=(5, 0))
 
     self.scale = tk.Scale(self, from_=1, to=100, orient=tk.HORIZONTAL)
-    self.scale.config(length=500)
+    self.scale.config(length=482)
     self.scale.grid(row=2, column=0, padx=5, pady=5)
 
     label2 = ttk.Label(self, text='Include')
@@ -52,13 +53,16 @@ class PassGeneratorFrame(ttk.Frame):
     self.punct.config(style='PGF.TCheckbutton', variable=self.use_punct)
     self.punct.grid(row=0, column=3, padx=5, pady=5)
 
-    entry_container = ttk.Frame(self, width=500, height=40)
+    entry_container = ttk.Frame(self, width=482, height=40)
     entry_container.pack_propagate(False)
     entry_container.grid(row=5, column=0, sticky='ew', padx=5, pady=5)
 
     self.entry = ttk.Entry(entry_container)
     self.entry.config(font=tkg.regular_font())
-    self.entry.pack(fill=tk.BOTH)
+    self.entry.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=(0, 3))
+
+    self.hide_button = hidebutton.HideButton(entry_container, self.entry)
+    self.hide_button.pack(side=tk.LEFT, padx=(2, 0))
 
     style.configure('PGF.TButton', font=tkg.regular_font())
     self.button = ttk.Button(self, text='Generează')
