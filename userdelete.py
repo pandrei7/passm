@@ -16,47 +16,56 @@ class UserDeleteScreen(ttk.Frame):
 
     tku.prepare_centering(self)
 
-    container = ttk.Frame(self)
-    container.grid(row=1, column=1, sticky='nsew', pady=(30, 0))
+    self.container = ttk.Frame(self)
+    self.container.grid(row=1, column=1, sticky='nsew', pady=(30, 0))
 
-    self.title = ttk.Label(container, text='Șterge un cont')
+    self.place_main_gui()
+    self.place_button_gui()
+
+  def place_main_gui(self):
+    cont = self.container
+
+    self.title = ttk.Label(cont, text='Șterge un cont')
     self.title.config(font=tkg.title_font())
     self.title.grid(row=0, column=0, sticky='w')
 
-    self.label1 = ttk.Label(container, text='Utilizator')
+    self.label1 = ttk.Label(cont, text='Utilizator')
     self.label1.config(font=tkg.regular_font())
     self.label1.grid(row=1, column=0, sticky='w', pady=(30, 0))
 
-    self.user_entry = ttk.Entry(container)
+    self.user_entry = ttk.Entry(cont)
     self.user_entry.config(font=tkg.regular_font())
     self.user_entry.grid(row=2, column=0, sticky='ew', pady=(5, 0))
 
-    self.label2 = ttk.Label(container, text='Parolă')
+    self.label2 = ttk.Label(cont, text='Parolă')
     self.label2.config(font=tkg.regular_font())
     self.label2.grid(row=3, column=0, sticky='w', pady=(10, 0))
 
-    self.pass_entry1 = ttk.Entry(container, show='*')
+    self.pass_entry1 = ttk.Entry(cont, show='*')
     self.pass_entry1.config(font=tkg.regular_font())
     self.pass_entry1.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
-    self.label3 = ttk.Label(container, text='Parolă (din nou)')
+    self.label3 = ttk.Label(cont, text='Parolă (din nou)')
     self.label3.config(font=tkg.regular_font())
     self.label3.grid(row=5, column=0, sticky='w', pady=(10, 0))
 
-    self.pass_entry2 = ttk.Entry(container, show='*')
+    self.pass_entry2 = ttk.Entry(cont, show='*')
     self.pass_entry2.config(font=tkg.regular_font())
     self.pass_entry2.grid(row=6, column=0, sticky='ew', pady=(5, 0))
 
-    self.error_label = tk.Label(container, text='')
+    self.error_label = tk.Label(cont, text='')
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
     self.error_label.grid(row=7, column=0, pady=(10, 0))
 
-    but_container = ttk.Frame(container)
-    but_container.grid(row=8, column=0)
-    tku.prepare_centering(but_container)
+  def place_button_gui(self):
+    cont = self.container
 
-    but_container2 = ttk.Frame(but_container)
-    but_container2.grid(row=1, column=1, pady=(10, 0))
+    but_cont = ttk.Frame(cont)
+    but_cont.grid(row=8, column=0)
+    tku.prepare_centering(but_cont)
+
+    but_cont2 = ttk.Frame(but_cont)
+    but_cont2.grid(row=1, column=1, pady=(10, 0))
 
     style = ttk.Style()
     style.configure('UDS.TButton', font=tkg.button_regular_font_tuple())
@@ -64,11 +73,11 @@ class UserDeleteScreen(ttk.Frame):
                     font=tkg.button_bold_regular_font_tuple(),
                     foreground='red')
 
-    self.back_button = ttk.Button(but_container2, text='Înapoi')
+    self.back_button = ttk.Button(but_cont2, text='Înapoi')
     self.back_button.config(style='UDS.TButton', command=self.back_click)
     self.back_button.grid(row=0, column=0, sticky='ns', padx=5)
 
-    self.delete_button = ttk.Button(but_container2, text='Șterge')
+    self.delete_button = ttk.Button(but_cont2, text='Șterge')
     self.delete_button.config(style='UDS_IMPORTANT.TButton',
                               command=self.delete_click)
     self.delete_button.grid(row=0, column=1, sticky='ns', padx=5)

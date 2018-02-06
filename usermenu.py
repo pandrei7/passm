@@ -15,25 +15,34 @@ class UserMenuScreen(ttk.Frame):
 
     tku.prepare_centering(self)
 
-    container = ttk.Frame(self)
-    container.grid(row=1, column=1, sticky='nsew', padx=10, pady=20)
+    self.container = ttk.Frame(self)
+    self.container.grid(row=1, column=1, sticky='nsew', padx=10, pady=20)
 
-    self.title = ttk.Label(container, text=us.name)
+    self.place_main_gui()
+    self.place_button_gui()
+
+  def place_main_gui(self):
+    cont = self.container
+
+    self.title = ttk.Label(cont, text=self.us.name)
     self.title.config(font=tkg.title_font())
     self.title.grid(row=0, column=0, sticky='w', padx=15, pady=(10, 20))
+
+  def place_button_gui(self):
+    cont = self.container
 
     style = ttk.Style()
     style.configure('UMS.TButton', font=tkg.button_regular_font())
 
-    self.acc_button = ttk.Button(container, text='Conturi', width=25)
+    self.acc_button = ttk.Button(cont, text='Conturi', width=25)
     self.acc_button.config(command=self.acc_click, style='UMS.TButton')
     self.acc_button.grid(row=1, column=0, padx=10, pady=7)
 
-    self.pass_button = ttk.Button(container, text='Generează o parolă', width=25)
+    self.pass_button = ttk.Button(cont, text='Generează o parolă', width=25)
     self.pass_button.config(command=self.pass_click, style='UMS.TButton')
     self.pass_button.grid(row=2, column=0, padx=10, pady=7)
 
-    self.back_button = ttk.Button(container, text='Înapoi', width=25)
+    self.back_button = ttk.Button(cont, text='Înapoi', width=25)
     self.back_button.config(command=self.back_click, style='UMS.TButton')
     self.back_button.grid(row=3, column=0, padx=10, pady=7)
 

@@ -17,20 +17,29 @@ class AccountDisplayScreen(ttk.Frame):
 
     tku.prepare_centering(self)
 
-    container = ttk.Frame(self)
-    container.grid(row=1, column=1)
+    self.container = ttk.Frame(self)
+    self.container.grid(row=1, column=1)
 
-    self.title = ttk.Label(container, text=us.name)
+    self.place_main_gui()
+    self.place_button_gui()
+
+    self.load_accounts()
+
+  def place_main_gui(self):
+    cont = self.container
+
+    self.title = ttk.Label(cont, text=self.us.name)
     self.title.config(font=tkg.title_font())
     self.title.grid(row=0, column=0, sticky='w', padx=(25, 0), pady=(30, 0))
 
-    list_container = ttk.Frame(container)
-    list_container.grid(row=1, column=0, rowspan=4, pady=(20, 0))
+    list_cont = ttk.Frame(cont)
+    list_cont.grid(row=1, column=0, rowspan=4, pady=(20, 0))
 
-    self.scrollbar = tk.Scrollbar(list_container, width=15)
+    # The scrollbar needs to be packed before the listbox.
+    self.scrollbar = tk.Scrollbar(list_cont, width=15)
     self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-    self.listbox = tk.Listbox(list_container)
+    self.listbox = tk.Listbox(list_cont)
     self.listbox.config(font=tkg.regular_font(),
                         yscrollcommand=self.scrollbar.set)
     self.listbox.pack(side=tk.LEFT, fill=tk.Y)
@@ -38,7 +47,9 @@ class AccountDisplayScreen(ttk.Frame):
     self.scrollbar.config(command=self.listbox.yview)
 
     self.listbox.bind('<Double-Button-1>', self.mod_click_decorator)
-    self.load_accounts()
+
+  def place_button_gui(self):
+    cont = self.container
 
     style = ttk.Style()
     style.configure('ADS.TButton', font=tkg.button_regular_font_tuple())
@@ -46,28 +57,28 @@ class AccountDisplayScreen(ttk.Frame):
                     font=tkg.button_bold_regular_font_tuple(),
                     foreground='red')
 
-    self.add_button = ttk.Button(container, text='Adaugă')
+    self.add_button = ttk.Button(cont, text='Adaugă')
     self.add_button.config(style='ADS.TButton', command=self.add_click)
     self.add_button.grid(row=1, column=1, sticky='ew', padx=(20, 0), pady=(20, 0))
 
-    self.mod_button = ttk.Button(container, text='Modifică')
+    self.mod_button = ttk.Button(cont, text='Modifică')
     self.mod_button.config(style='ADS.TButton', command=self.mod_click)
     self.mod_button.grid(row=2, column=1, sticky='ew', padx=(20, 0))
 
-    self.delete_button = ttk.Button(container, text='Șterge')
+    self.delete_button = ttk.Button(cont, text='Șterge')
     self.delete_button.config(style='ADS_IMPORTANT.TButton',
                               command=self.delete_click)
     self.delete_button.grid(row=3, column=1, sticky='ew', padx=(20, 0))
 
-    self.back_button = ttk.Button(container, text='Înapoi')
+    self.back_button = ttk.Button(cont, text='Înapoi')
     self.back_button.config(style='ADS.TButton', command=self.back_click)
     self.back_button.grid(row=4, column=1, sticky='ew', padx=(20, 0))
 
-    self.search_entry = ttk.Entry(container)
+    self.search_entry = ttk.Entry(cont)
     self.search_entry.config(font=tkg.regular_font())
     self.search_entry.grid(row=5, column=0, sticky='ew', pady=20)
 
-    self.search_button = ttk.Button(container, text='Caută')
+    self.search_button = ttk.Button(cont, text='Caută')
     self.search_button.config(style='ADS.TButton', command=self.search_click)
     self.search_button.grid(row=5, column=1, sticky='ew', padx=(20, 0))
 
