@@ -14,7 +14,7 @@ class ClipButton(tk.Button):
         self.message = pop_message
         if self.message is None:
             self.message = ('Am copiat textul.\n'
-                            'Il poti lipi doar daca aplicatia este deschisa.')
+                            'Îl poți lipi doar dacă aplicația este deschisă.')
 
         self.image = tk.PhotoImage(file='images/clipboard.gif')
         self.config(image=self.image)
