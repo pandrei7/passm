@@ -3,6 +3,7 @@ from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
+import tkutils as tku
 
 import account
 import accountdb
@@ -14,12 +15,7 @@ class AccountDisplayScreen(ttk.Frame):
     self.controller = parent
     self.us = us
 
-    style = ttk.Style()
-
-    self.grid_rowconfigure(0, weight=1)
-    self.grid_rowconfigure(2, weight=1)
-    self.grid_columnconfigure(0, weight=1)
-    self.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(self)
 
     container = ttk.Frame(self)
     container.grid(row=1, column=1)
@@ -44,6 +40,7 @@ class AccountDisplayScreen(ttk.Frame):
     self.listbox.bind('<Double-Button-1>', self.mod_click_decorator)
     self.load_accounts()
 
+    style = ttk.Style()
     style.configure('ADS.TButton', font=tkg.button_regular_font_tuple())
     style.configure('ADS_IMPORTANT.TButton',
                     font=tkg.button_bold_regular_font_tuple(),

@@ -1,9 +1,11 @@
 from tkinter import ttk
 from tkinter.ttk import *
 
-import passgenerator
 import tkglobals as tkg
 import tkinter as tk
+import tkutils as tku
+
+import passgenerator
 
 class UserMenuScreen(ttk.Frame):
   def __init__(self, parent, us):
@@ -11,12 +13,7 @@ class UserMenuScreen(ttk.Frame):
     self.controller = parent
     self.us = us
 
-    style = ttk.Style()
-
-    self.grid_rowconfigure(0, weight=1)
-    self.grid_rowconfigure(2, weight=1)
-    self.grid_columnconfigure(0, weight=1)
-    self.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(self)
 
     container = ttk.Frame(self)
     container.grid(row=1, column=1, sticky='nsew', padx=10, pady=20)
@@ -25,6 +22,7 @@ class UserMenuScreen(ttk.Frame):
     self.title.config(font=tkg.title_font())
     self.title.grid(row=0, column=0, sticky='w', padx=15, pady=(10, 20))
 
+    style = ttk.Style()
     style.configure('UMS.TButton', font=tkg.button_regular_font())
 
     self.acc_button = ttk.Button(container, text='Conturi', width=25)

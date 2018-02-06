@@ -1,18 +1,17 @@
 from tkinter import ttk
 from tkinter.ttk import *
 
+import tkglobals as tkg
+import tkinter as tk
+
 import clipbutton
 import hidebutton
 import secrets
-import tkglobals as tkg
-import tkinter as tk
 
 class PassGeneratorFrame(ttk.Frame):
   def __init__(self, parent):
     ttk.Frame.__init__(self, parent)
     self.parent = parent
-
-    style = ttk.Style()
 
     title = ttk.Label(self, text='Generează o parolă')
     title.config(font=tkg.title_font())
@@ -30,7 +29,9 @@ class PassGeneratorFrame(ttk.Frame):
     label2.config(font=tkg.regular_font())
     label2.grid(row=3, column=0, sticky='w', padx=(10, 0), pady=5)
 
+    style = ttk.Style()
     style.configure('PGF.TCheckbutton', font=tkg.regular_font())
+
     check_container = ttk.Frame(self)
     check_container.grid(row=4, column=0, sticky='ew', padx=5, pady=5)
 

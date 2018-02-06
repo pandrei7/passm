@@ -3,6 +3,7 @@ from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
+import tkutils as tku
 
 import accountchange
 import accountdisplay
@@ -18,19 +19,11 @@ class StartScreen(ttk.Frame):
     ttk.Frame.__init__(self, parent)
     self.controller = parent
 
-    style = ttk.Style()
-
-    self.grid_rowconfigure(0, weight=1)
-    self.grid_rowconfigure(2, weight=1)
-    self.grid_columnconfigure(0, weight=1)
-    self.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(self)
 
     container = ttk.Frame(self)
     container.grid(row=1, column=1, sticky='nsew', padx=10)
-    container.grid_rowconfigure(0, weight=1)
-    container.grid_rowconfigure(2, weight=1)
-    container.grid_columnconfigure(0, weight=1)
-    container.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(container)
 
     container_top = ttk.Frame(container)
     container_top.grid(row=0, column=0, pady=(30, 0))
@@ -45,10 +38,7 @@ class StartScreen(ttk.Frame):
 
     container_bot = ttk.Frame(container)
     container_bot.grid(row=1, column=0, pady=(40, 0))
-    container_bot.grid_rowconfigure(0, weight=1)
-    container_bot.grid_rowconfigure(2, weight=1)
-    container_bot.grid_columnconfigure(0, weight=1)
-    container_bot.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(container_bot)
 
     container_bot2 = ttk.Frame(container_bot)
     container_bot2.grid(row=1, column=1)
@@ -73,6 +63,7 @@ class StartScreen(ttk.Frame):
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
     self.error_label.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
+    style = ttk.Style()
     style.configure('SS.TButton', font=tkg.button_regular_font())
 
     self.enter_button = ttk.Button(container_bot2, text='Intră')

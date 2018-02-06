@@ -3,6 +3,7 @@ from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
+import tkutils as tku
 
 import accountdb
 import user
@@ -13,19 +14,11 @@ class UserCreateScreen(ttk.Frame):
     ttk.Frame.__init__(self, parent)
     self.controller = parent
 
-    style = ttk.Style()
-
-    self.grid_rowconfigure(0, weight=1)
-    self.grid_rowconfigure(2, weight=1)
-    self.grid_columnconfigure(0, weight=1)
-    self.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(self)
 
     container = ttk.Frame(self)
     container.grid(row=1, column=1, sticky='nsew', pady=(30, 0))
-    container.grid_rowconfigure(0, weight=1)
-    container.grid_rowconfigure(2, weight=1)
-    container.grid_columnconfigure(0, weight=1)
-    container.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(container)
 
     self.title = ttk.Label(container, text='Creează cont nou')
     self.title.config(font=tkg.title_font())
@@ -61,14 +54,12 @@ class UserCreateScreen(ttk.Frame):
 
     but_container = ttk.Frame(container)
     but_container.grid(row=8, column=0)
-    but_container.grid_rowconfigure(0, weight=1)
-    but_container.grid_rowconfigure(2, weight=1)
-    but_container.grid_columnconfigure(0, weight=1)
-    but_container.grid_columnconfigure(2, weight=1)
+    tku.prepare_centering(but_container)
 
     but_container2 = ttk.Frame(but_container)
     but_container2.grid(row=1, column=1, pady=(10, 0))
 
+    style = ttk.Style()
     style.configure('UCS.TButton', font=tkg.button_regular_font_tuple())
 
     self.back_button = ttk.Button(but_container2, text='Înapoi')
