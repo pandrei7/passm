@@ -110,7 +110,7 @@ class UserDeleteScreen(ttk.Frame):
   def remove_from_database(self, name, password):
     us = userdb.get_users_by_name_exact(name)
     if len(us) <= 0:
-      self.error_label.config(text='Nu am găsit niciun utilizator cu acest nume.')
+      self.error_label.config(text='Nu am găsit niciun\nutilizator cu acest nume.')
       return
     if len(us) > 1:
       self.error_label.config(text='Chestia asta nu trebuia să se întâmple...')
