@@ -6,6 +6,7 @@ import tkinter as tk
 
 import account
 import accountdb
+import clipbutton
 import hidebutton
 import passgenerator
 import secrets
@@ -38,8 +39,7 @@ class AccountChangeScreen(ttk.Frame):
 
     self.name_entry = ttk.Entry(container)
     self.name_entry.config(font=tkg.regular_font())
-    self.name_entry.grid(row=2, column=0, sticky='ew', padx=(0, 10),
-                                                       pady=(5, 0))
+    self.name_entry.grid(row=2, column=0, sticky='ew', pady=(5, 0))
 
     self.label2 = ttk.Label(container, text='Email')
     self.label2.config(font=tkg.regular_font())
@@ -47,8 +47,7 @@ class AccountChangeScreen(ttk.Frame):
 
     self.email_entry = ttk.Entry(container)
     self.email_entry.config(font=tkg.regular_font())
-    self.email_entry.grid(row=4, column=0, sticky='ew', padx=(0, 10),
-                                                        pady=(5, 0))
+    self.email_entry.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
     self.label3 = ttk.Label(container, text='Nume de utilizator')
     self.label3.config(font=tkg.regular_font())
@@ -56,8 +55,7 @@ class AccountChangeScreen(ttk.Frame):
 
     self.user_entry = ttk.Entry(container)
     self.user_entry.config(font=tkg.regular_font())
-    self.user_entry.grid(row=6, column=0, sticky='ew', padx=(0, 10),
-                                                       pady=(5, 0))
+    self.user_entry.grid(row=6, column=0, sticky='ew', pady=(5, 0))
 
     self.label4 = ttk.Label(container, text='Parolă')
     self.label4.config(font=tkg.regular_font())
@@ -66,12 +64,15 @@ class AccountChangeScreen(ttk.Frame):
     pass_container = ttk.Frame(container)
     pass_container.grid(row=8, column=0, sticky='ew')
 
-    self.pass_entry = ttk.Entry(pass_container, show='*', width=30)
+    self.pass_entry = ttk.Entry(pass_container, show='*', width=27)
     self.pass_entry.config(font=tkg.regular_font())
     self.pass_entry.grid(row=0, column=0, padx=(0, 10), pady=(5, 0))
 
     self.hide_button = hidebutton.HideButton(pass_container, self.pass_entry)
     self.hide_button.grid(row=0, column=1, padx=(0, 10), pady=(5, 0))
+
+    self.clip_button = clipbutton.ClipButton(pass_container, self.pass_entry)
+    self.clip_button.grid(row=0, column=2, pady=(5, 0))
 
     self.error_label = tk.Label(container, text='')
     self.error_label.config(font=tkg.small_regular_font(), fg='red')
@@ -79,18 +80,25 @@ class AccountChangeScreen(ttk.Frame):
 
     but_container = ttk.Frame(container)
     but_container.grid(row=10, column=0, sticky='ew')
+    but_container.grid_rowconfigure(0, weight=1)
+    but_container.grid_rowconfigure(2, weight=1)
+    but_container.grid_columnconfigure(0, weight=1)
+    but_container.grid_columnconfigure(2, weight=1)
+
+    but_container2 = ttk.Frame(but_container)
+    but_container2.grid(row=1, column=1)
 
     style.configure('ACS.TButton', font=tkg.button_regular_font())
 
-    self.back_button = ttk.Button(but_container, text='Înapoi')
+    self.back_button = ttk.Button(but_container2, text='Înapoi')
     self.back_button.config(style='ACS.TButton', command=self.back_click)
     self.back_button.grid(row=0, column=0, sticky='ns', padx=5)
 
-    self.save_button = ttk.Button(but_container, text='Salvează')
+    self.save_button = ttk.Button(but_container2, text='Salvează')
     self.save_button.config(style='ACS.TButton', command=self.save_click)
     self.save_button.grid(row=0, column=1, sticky='ns', padx=5)
 
-    self.pass_button = ttk.Button(but_container, text='Generează parolă')
+    self.pass_button = ttk.Button(but_container2, text='Generează parolă')
     self.pass_button.config(style='ACS.TButton', command=self.pass_click)
     self.pass_button.grid(row=0, column=2, sticky='ns', padx=5)
 
