@@ -1,6 +1,7 @@
 from tkinter import ttk
 from tkinter.ttk import *
 
+import clipbutton
 import hidebutton
 import secrets
 import tkglobals as tkg
@@ -62,7 +63,10 @@ class PassGeneratorFrame(ttk.Frame):
     self.entry.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=(0, 3))
 
     self.hide_button = hidebutton.HideButton(entry_container, self.entry)
-    self.hide_button.pack(side=tk.LEFT, padx=(2, 0))
+    self.hide_button.pack(side=tk.LEFT, padx=(2, 3))
+
+    self.clip_button = clipbutton.ClipButton(entry_container, self.entry)
+    self.clip_button.pack(side=tk.LEFT, padx=(2, 0))
 
     style.configure('PGF.TButton', font=tkg.regular_font())
     self.button = ttk.Button(self, text='Generează')
