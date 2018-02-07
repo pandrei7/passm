@@ -32,3 +32,4 @@ class ClipButton(tk.Button):
         r.destroy()
 
         self.pop_up()
+

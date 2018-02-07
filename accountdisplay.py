@@ -123,3 +123,4 @@ class AccountDisplayScreen(ttk.Frame):
   def search_click(self):
     query = self.search_entry.get()
     self.load_accounts(query)
+

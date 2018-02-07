@@ -65,3 +65,4 @@ def password_check(name, password):
 
   us = user.unpack(us[0])
   return password == secrets.decrypt_field(us.password)
+

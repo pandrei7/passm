@@ -22,9 +22,10 @@ class HideButton(tk.Button):
     def hide(self):
         self.entry.config(show='*')
         self.change_image(self.hide_image)
-        
+
     def click(self):
         if self.entry.cget('show') == '*':
             self.show()
         else:
             self.hide()
+

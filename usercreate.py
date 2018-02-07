@@ -136,3 +136,4 @@ class UserCreateScreen(ttk.Frame):
   def clear_password_fields(self):
     self.pass_entry1.delete(0, tk.END)
     self.pass_entry2.delete(0, tk.END)
+

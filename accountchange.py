@@ -164,3 +164,4 @@ class AccountChangeScreen(ttk.Frame):
     key = secrets.decrypt_field(self.us.crypt_key)
     self.pass_entry.delete(0, tk.END)
     self.pass_entry.insert(0, secrets.decrypt_data(key, self.acc.password))
+

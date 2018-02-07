@@ -47,3 +47,4 @@ def hyper_title_font():
 
 def hyper_title_font_tuple():
   return ('Helvetica', 22, 'bold')
+

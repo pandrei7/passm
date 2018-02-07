@@ -47,3 +47,4 @@ def decrypt_data(key, data):
 
 def decrypt_field(data):
   return decrypt_data(field_crypt_key(), data)
+

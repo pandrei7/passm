@@ -102,3 +102,4 @@ class PassGeneratorFrame(ttk.Frame):
 
     self.entry.delete(0, tk.END)
     self.entry.insert(0, password)
+
