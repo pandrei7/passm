@@ -3,6 +3,7 @@ import sqlite3
 
 import secrets
 import user
+import utils
 
 class UserExistsException(Exception):
   def __init__(self, name):
@@ -14,7 +15,7 @@ class UserNotFoundException(Exception):
     Exception.__init__(self, 'User with name "' + name + '" not found')
 
 
-DB_DIR = 'dbs'
+DB_DIR = utils.get_base_path() + '/dbs'
 DB_NAME = '.supercalifragilistic'
 DB_PATH = DB_DIR + '/' + DB_NAME + '.db'
 

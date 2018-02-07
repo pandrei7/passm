@@ -2,6 +2,7 @@ import os
 import sqlite3
 
 import user
+import utils
 
 class AccountExistsException(Exception):
   def __init__(self, name):
@@ -9,7 +10,7 @@ class AccountExistsException(Exception):
 
 
 def get_db_path(us):
-  return 'dbs/' + us.name + '.db'
+  return utils.get_base_path() + '/dbs/' + us.name + '.db'
 
 
 def create_database(us):
