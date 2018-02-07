@@ -83,6 +83,9 @@ class AccountDisplayScreen(ttk.Frame):
     self.search_button.grid(row=5, column=1, sticky='ew', padx=(20, 0))
 
   def load_accounts(self, query=''):
+    # Create user's database if it does not exist (possible bug).
+    accountdb.create_database(self.us)
+
     self.listbox.delete(0, tk.END)
     accounts = accountdb.get_accounts_by_name(self.us, query)
 
