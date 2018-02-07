@@ -5,6 +5,8 @@ import tkglobals as tkg
 import tkinter as tk
 import tkutils as tku
 
+import platform
+
 import accountchange
 import accountdisplay
 import usercreate
@@ -130,7 +132,7 @@ class StartScreen(ttk.Frame):
 class MainApp(tk.Tk):
   def __init__(self, *args, **kwargs):
     tk.Tk.__init__(self, *args, **kwargs)
-    self.geometry('500x600')
+    self.geometry('450x550' if platform.system() == 'Windows' else '500x600')
     self.title('Manager parole')
     self.resizable(width=False, height=False)
 

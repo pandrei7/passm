@@ -4,6 +4,8 @@ from tkinter.ttk import *
 import tkglobals as tkg
 import tkinter as tk
 
+import platform
+
 import clipbutton
 import hidebutton
 import secrets
@@ -30,7 +32,7 @@ class PassGeneratorFrame(ttk.Frame):
     label1.grid(row=1, column=0, sticky='w', padx=(10, 0), pady=(5, 0))
 
     self.scale = tk.Scale(self, from_=1, to=100, orient=tk.HORIZONTAL)
-    self.scale.config(length=482)
+    self.scale.config(length=(432 if platform.system() == 'Windows' else 482))
     self.scale.grid(row=2, column=0, padx=5, pady=5)
 
   def place_check_gui(self):
@@ -65,7 +67,9 @@ class PassGeneratorFrame(ttk.Frame):
     self.punct.grid(row=0, column=3, padx=5, pady=5)
 
   def place_entry_gui(self):
-    entry_cont = ttk.Frame(self, width=482, height=40)
+    entry_cont = ttk.Frame(self, width=432, height=40)
+    if platform.system() != 'Windows':
+      entry_cont.config(width=482)
     entry_cont.pack_propagate(False)
     entry_cont.grid(row=5, column=0, sticky='ew', padx=5, pady=5)
 

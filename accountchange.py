@@ -5,6 +5,8 @@ import tkglobals as tkg
 import tkinter as tk
 import tkutils as tku
 
+import platform
+
 import clipbutton
 import hidebutton
 import passgenerator
@@ -45,6 +47,8 @@ class AccountChangeScreen(ttk.Frame):
     self.name_entry = ttk.Entry(cont)
     self.name_entry.config(font=tkg.regular_font())
     self.name_entry.grid(row=2, column=0, sticky='ew', pady=(5, 0))
+    if platform.system() != 'Windows':
+      self.name_entry.grid(padx=(0, 10))
 
     self.label2 = ttk.Label(cont, text='Email')
     self.label2.config(font=tkg.regular_font())
@@ -53,6 +57,8 @@ class AccountChangeScreen(ttk.Frame):
     self.email_entry = ttk.Entry(cont)
     self.email_entry.config(font=tkg.regular_font())
     self.email_entry.grid(row=4, column=0, sticky='ew', pady=(5, 0))
+    if platform.system() != 'Windows':
+      self.email_entry.grid(padx=(0, 10))
 
     self.label3 = ttk.Label(cont, text='Nume de utilizator')
     self.label3.config(font=tkg.regular_font())
@@ -61,6 +67,8 @@ class AccountChangeScreen(ttk.Frame):
     self.user_entry = ttk.Entry(cont)
     self.user_entry.config(font=tkg.regular_font())
     self.user_entry.grid(row=6, column=0, sticky='ew', pady=(5, 0))
+    if platform.system() != 'Windows':
+      self.user_entry.grid(padx=(0, 10))
 
     self.label4 = ttk.Label(cont, text='Parolă')
     self.label4.config(font=tkg.regular_font())
