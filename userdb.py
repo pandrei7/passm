@@ -1,6 +1,7 @@
 import os
-import secrets
 import sqlite3
+
+import secrets
 import user
 
 class UserExistsException(Exception):
