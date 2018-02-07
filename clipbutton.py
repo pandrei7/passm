@@ -1,6 +1,8 @@
 from tkinter.messagebox import showinfo
 import tkinter as tk
 
+import utils
+
 class ClipButton(tk.Button):
     def __init__(self, parent, entry, pop_title=None, pop_message=None):
         tk.Button.__init__(self, parent)
@@ -16,7 +18,9 @@ class ClipButton(tk.Button):
             self.message = ('Am copiat textul.\n'
                             'Îl poți lipi doar dacă aplicația este deschisă.')
 
-        self.image = tk.PhotoImage(file='images/clipboard.gif')
+        image_path = utils.get_base_path() + '/images/clipboard.gif'
+        self.image = tk.PhotoImage(file=image_path)
+
         self.config(image=self.image)
         self.config(command=self.click)
 

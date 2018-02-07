@@ -1,13 +1,18 @@
 import tkinter as tk
 
+import utils
+
 class HideButton(tk.Button):
     def __init__(self, parent, entry):
         tk.Button.__init__(self, parent)
         self.parent = parent
         self.entry = entry
 
-        self.show_image = tk.PhotoImage(file='images/show.gif')
-        self.hide_image = tk.PhotoImage(file='images/hide.gif')
+        show_image_path = utils.get_base_path() + '/images/show.gif'
+        self.show_image = tk.PhotoImage(file=show_image_path)
+
+        hide_image_path = utils.get_base_path() + '/images/hide.gif'
+        self.hide_image = tk.PhotoImage(file=hide_image_path)
 
         self.config(command=self.click)
         self.hide()
