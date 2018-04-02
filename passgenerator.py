@@ -88,7 +88,7 @@ class PassGeneratorFrame(ttk.Frame):
     style.configure('PGF.TButton', font=tkg.regular_font())
 
     self.button = ttk.Button(self, text='Generează')
-    self.button.config(command=self.click, style='PGF.TButton')
+    self.button.config(style='PGF.TButton', command=self.click)
     self.button.grid(row=6, column=0, padx=(10, 0), pady=5)
 
   def click(self):

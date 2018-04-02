@@ -35,15 +35,15 @@ class UserMenuScreen(ttk.Frame):
     style.configure('UMS.TButton', font=tkg.button_regular_font())
 
     self.acc_button = ttk.Button(cont, text='Conturi', width=25)
-    self.acc_button.config(command=self.acc_click, style='UMS.TButton')
+    self.acc_button.config(style='UMS.TButton', command=self.acc_click)
     self.acc_button.grid(row=1, column=0, padx=10, pady=7)
 
     self.pass_button = ttk.Button(cont, text='Generează o parolă', width=25)
-    self.pass_button.config(command=self.pass_click, style='UMS.TButton')
+    self.pass_button.config(style='UMS.TButton', command=self.pass_click)
     self.pass_button.grid(row=2, column=0, padx=10, pady=7)
 
     self.back_button = ttk.Button(cont, text='Înapoi', width=25)
-    self.back_button.config(command=self.back_click, style='UMS.TButton')
+    self.back_button.config(style='UMS.TButton', command=self.back_click)
     self.back_button.grid(row=3, column=0, padx=10, pady=7)
 
   def acc_click(self):
