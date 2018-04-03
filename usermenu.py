@@ -42,9 +42,13 @@ class UserMenuScreen(ttk.Frame):
     self.pass_button.config(style='UMS.TButton', command=self.pass_click)
     self.pass_button.grid(row=2, column=0, padx=10, pady=7)
 
+    self.export_button = ttk.Button(cont, text='Exportă baza de date', width=25)
+    self.export_button.config(style='UMS.TButton', command=self.export_click)
+    self.export_button.grid(row=3, column=0, padx=10, pady=25)
+
     self.back_button = ttk.Button(cont, text='Înapoi', width=25)
     self.back_button.config(style='UMS.TButton', command=self.back_click)
-    self.back_button.grid(row=3, column=0, padx=10, pady=7)
+    self.back_button.grid(row=4, column=0, padx=10, pady=7)
 
   def acc_click(self):
     self.controller.show_account_display_screen(self.us)
@@ -55,6 +59,9 @@ class UserMenuScreen(ttk.Frame):
     son.wm_resizable(width=False, height=False)
     gen = passgenerator.PassGeneratorFrame(son)
     gen.grid()
+
+  def export_click(self):
+    self.controller.show_export_screen(self.us)
 
   def back_click(self):
     self.controller.show_start_screen()

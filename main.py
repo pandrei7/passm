@@ -7,6 +7,7 @@ import platform
 
 import accountchange
 import accountdisplay
+import exportdb
 import start
 import usercreate
 import userdelete
@@ -56,6 +57,11 @@ class MainApp(tk.Tk):
   def show_account_change_screen(self, us, acc):
     self.clear_screen()
     self.frame = accountchange.AccountChangeScreen(self, us, acc)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_export_screen(self, us):
+    self.clear_screen()
+    self.frame = exportdb.ExportDbScreen(self, us)
     self.frame.pack(fill=tk.BOTH)
 
 
