@@ -18,7 +18,6 @@ class UserCreateScreen(ttk.Frame):
 
     self.container = ttk.Frame(self)
     self.container.grid(row=1, column=1, sticky='nsew', pady=(30, 0))
-    tku.prepare_centering(self.container)
 
     self.place_main_gui()
     self.place_button_gui()
