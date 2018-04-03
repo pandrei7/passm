@@ -44,11 +44,15 @@ class UserMenuScreen(ttk.Frame):
 
     self.export_button = ttk.Button(cont, text='Exportă baza de date', width=25)
     self.export_button.config(style='UMS.TButton', command=self.export_click)
-    self.export_button.grid(row=3, column=0, padx=10, pady=25)
+    self.export_button.grid(row=3, column=0, padx=10, pady=(25, 7))
+
+    self.import_button = ttk.Button(cont, text='Importă o bază de date', width=25)
+    self.import_button.config(style='UMS.TButton', command=self.import_click)
+    self.import_button.grid(row=4, column=0, padx=10, pady=(7, 25))
 
     self.back_button = ttk.Button(cont, text='Înapoi', width=25)
     self.back_button.config(style='UMS.TButton', command=self.back_click)
-    self.back_button.grid(row=4, column=0, padx=10, pady=7)
+    self.back_button.grid(row=5, column=0, padx=10, pady=7)
 
   def acc_click(self):
     self.controller.show_account_display_screen(self.us)
@@ -62,6 +66,9 @@ class UserMenuScreen(ttk.Frame):
 
   def export_click(self):
     self.controller.show_export_screen(self.us)
+
+  def import_click(self):
+    self.controller.show_import_screen(self.us)
 
   def back_click(self):
     self.controller.show_start_screen()

@@ -8,6 +8,7 @@ import platform
 import accountchange
 import accountdisplay
 import exportdb
+import importdb
 import start
 import usercreate
 import userdelete
@@ -62,6 +63,11 @@ class MainApp(tk.Tk):
   def show_export_screen(self, us):
     self.clear_screen()
     self.frame = exportdb.ExportDbScreen(self, us)
+    self.frame.pack(fill=tk.BOTH)
+
+  def show_import_screen(self, us):
+    self.clear_screen()
+    self.frame = importdb.ImportDbScreen(self, us)
     self.frame.pack(fill=tk.BOTH)
 
 
