@@ -83,7 +83,7 @@ class UserCreateScreen(ttk.Frame):
 
   def create_click(self):
     name = self.user_entry.get()
-    if len(name) <= 0:
+    if name == '':
       self.error_label.config(text='Introdu numele utilizatorului.')
       self.clear_password_fields()
       return
@@ -105,7 +105,7 @@ class UserCreateScreen(ttk.Frame):
 
     pass1 = self.pass_entry1.get()
     pass2 = self.pass_entry2.get()
-    if len(pass1) <= 0 or len(pass2) <= 0:
+    if pass1 == '' or pass2 == '':
       self.error_label.config(text='Introdu parolele.')
       self.clear_password_fields()
       return
