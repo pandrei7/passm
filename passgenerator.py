@@ -41,7 +41,7 @@ class PassGeneratorFrame(ttk.Frame):
     label2.grid(row=3, column=0, sticky='w', padx=(10, 0), pady=5)
 
     style = ttk.Style()
-    style.configure('PGF.TCheckbutton', font=tkg.regular_font())
+    style.configure('PGF.TCheckbutton', font=tkg.button_regular_font_tuple())
 
     check_cont = ttk.Frame(self)
     check_cont.grid(row=4, column=0, sticky='ew', padx=5, pady=5)
@@ -85,7 +85,7 @@ class PassGeneratorFrame(ttk.Frame):
 
   def place_button_gui(self):
     style = ttk.Style()
-    style.configure('PGF.TButton', font=tkg.regular_font())
+    style.configure('PGF.TButton', font=tkg.regular_font_tuple())
 
     self.button = ttk.Button(self, text='Generează')
     self.button.config(style='PGF.TButton', command=self.click)

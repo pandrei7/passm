@@ -71,7 +71,7 @@ class StartScreen(ttk.Frame):
 
   def place_button_gui(self):
     style = ttk.Style()
-    style.configure('SS.TButton', font=tkg.button_regular_font())
+    style.configure('SS.TButton', font=tkg.button_regular_font_tuple())
 
     self.enter_button = ttk.Button(self.bot_cont2, text='Intră')
     self.enter_button.config(style='SS.TButton', command=self.enter_click)

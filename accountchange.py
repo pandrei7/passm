@@ -102,7 +102,7 @@ class AccountChangeScreen(ttk.Frame):
     but_cont2.grid(row=1, column=1)
 
     style = ttk.Style()
-    style.configure('ACS.TButton', font=tkg.button_regular_font())
+    style.configure('ACS.TButton', font=tkg.button_regular_font_tuple())
 
     self.back_button = ttk.Button(but_cont2, text='Înapoi')
     self.back_button.config(style='ACS.TButton', command=self.back_click)
