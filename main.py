@@ -15,6 +15,7 @@ import userdelete
 import usermenu
 
 import userdb
+import utils
 
 class MainApp(tk.Tk):
   def __init__(self, *args, **kwargs):
@@ -22,6 +23,7 @@ class MainApp(tk.Tk):
     self.geometry('450x550' if platform.system() == 'Windows' else '500x600')
     self.title('Manager parole')
     self.resizable(width=False, height=False)
+    self.iconbitmap(utils.get_resource_path('images', 'icon.ico'))
 
     self.frame = None
     self.show_start_screen()

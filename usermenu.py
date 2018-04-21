@@ -7,6 +7,8 @@ import tkutils as tku
 
 import passgenerator
 
+import utils
+
 class UserMenuScreen(ttk.Frame):
   def __init__(self, parent, us):
     ttk.Frame.__init__(self, parent)
@@ -61,6 +63,7 @@ class UserMenuScreen(ttk.Frame):
     son = tk.Toplevel(self)
     son.wm_title('Generator parolă')
     son.wm_resizable(width=False, height=False)
+    son.wm_iconbitmap(utils.get_resource_path('images', 'icon.ico'))
     gen = passgenerator.PassGeneratorFrame(son)
     gen.grid()
 
