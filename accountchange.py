@@ -146,6 +146,11 @@ class AccountChangeScreen(ttk.Frame):
     son.wm_title('Generator parolă')
     son.wm_resizable(width=False, height=False)
     son.wm_iconbitmap(utils.get_resource_path('images', 'icon.ico'))
+
+    pop_up_icon_path = utils.get_resource_path('images', 'icon.gif')
+    pop_up_icon = tk.PhotoImage(file=pop_up_icon_path)
+    son.tk.call('wm', 'iconphoto', son._w, pop_up_icon)
+
     gen = passgenerator.PassGeneratorFrame(son)
     gen.grid()
 
