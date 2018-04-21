@@ -30,7 +30,7 @@ class StartScreen(ttk.Frame):
     top_cont = ttk.Frame(cont)
     top_cont.grid(row=0, column=0, pady=(30, 0))
 
-    image_path = utils.get_base_path() + '/images/big.gif'
+    image_path = utils.get_resource_path('images/big.gif')
     self.image = tk.PhotoImage(file=image_path)
     self.image_label = ttk.Label(top_cont, image=self.image)
     self.image_label.grid(row=0, column=0, sticky='w')

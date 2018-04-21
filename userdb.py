@@ -15,9 +15,9 @@ class UserNotFoundException(Exception):
     Exception.__init__(self, 'User with name "' + name + '" not found')
 
 
-DB_DIR = utils.get_base_path() + '/dbs'
+DB_DIR = utils.get_resource_path('dbs')
 DB_NAME = '.supercalifragilistic'
-DB_PATH = DB_DIR + '/' + DB_NAME + '.db'
+DB_PATH = os.path.join(DB_DIR, DB_NAME + '.db')
 
 
 def create_database():
