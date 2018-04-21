@@ -35,8 +35,8 @@ class StartScreen(ttk.Frame):
     self.image_label = ttk.Label(top_cont, image=self.image)
     self.image_label.grid(row=0, column=0, sticky='w')
 
-    self.title = ttk.Label(top_cont, text='Manager parole')
-    self.title.config(font=tkg.hyper_title_font())
+    self.title = ttk.Label(top_cont, text='Administrator\nparole\n-Melcușor Pass-')
+    self.title.config(font=tkg.hyper_title_font(), justify=tk.CENTER)
     self.title.grid(row=0, column=1, sticky='e', padx=10, pady=10)
 
   def place_entry_gui(self):
