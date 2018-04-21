@@ -7,5 +7,9 @@ def get_base_path():
   return os.path.dirname(os.path.abspath(__file__))
 
 
-def get_resource_path(resource):
-  return os.path.join(get_base_path(), resource)
+def get_resource_path(*tokens):
+  path = get_base_path()
+  for tok in tokens:
+    path = os.path.join(path, tok)
+  return path
+  

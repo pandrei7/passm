@@ -10,7 +10,7 @@ class AccountExistsException(Exception):
 
 
 def get_db_path(us):
-  return utils.get_resource_path('dbs/' + us.name + '.db')
+  return utils.get_resource_path('dbs', us.name + '.db')
 
 
 def create_database(us):

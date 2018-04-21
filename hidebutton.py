@@ -8,10 +8,10 @@ class HideButton(tk.Button):
         self.parent = parent
         self.entry = entry
 
-        show_image_path = utils.get_resource_path('images/show.gif')
+        show_image_path = utils.get_resource_path('images', 'show.gif')
         self.show_image = tk.PhotoImage(file=show_image_path)
 
-        hide_image_path = utils.get_resource_path('images/hide.gif')
+        hide_image_path = utils.get_resource_path('images', 'hide.gif')
         self.hide_image = tk.PhotoImage(file=hide_image_path)
 
         self.config(command=self.click)
