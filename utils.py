@@ -6,3 +6,6 @@ def get_base_path():
     return sys._MEIPASS
   return os.path.dirname(os.path.abspath(__file__))
 
+
+def get_resource_path(resource):
+  return os.path.join(get_base_path(), resource)
