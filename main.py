@@ -21,7 +21,7 @@ class MainApp(tk.Tk):
   def __init__(self, *args, **kwargs):
     tk.Tk.__init__(self, *args, **kwargs)
     self.geometry('450x550' if platform.system() == 'Windows' else '500x600')
-    self.title('Manager parole')
+    self.title('Administrator parole')
     self.resizable(width=False, height=False)
     self.iconbitmap(utils.get_resource_path('images', 'icon.ico'))
 
