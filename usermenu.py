@@ -5,6 +5,8 @@ import tkglobals as tkg
 import tkinter as tk
 import tkutils as tku
 
+import platform
+
 import passgenerator
 
 import utils
@@ -63,7 +65,12 @@ class UserMenuScreen(ttk.Frame):
     son = tk.Toplevel(self)
     son.wm_title('Generator parolă')
     son.wm_resizable(width=False, height=False)
-    son.wm_iconbitmap(utils.get_resource_path('images', 'icon.ico'))
+
+    if platform.system() != 'Windows':
+      icon = tk.PhotoImage(file=utils.get_resource_path('images', 'icon.gif'))
+      son.tk.call('wm', 'iconphoto', son._w, icon)
+    else:
+      son.wm_iconbitmap(utils.get_resource_path('images', 'icon.ico'))
 
     pop_up_icon_path = utils.get_resource_path('images', 'icon.gif')
     pop_up_icon = tk.PhotoImage(file=pop_up_icon_path)

@@ -23,7 +23,12 @@ class MainApp(tk.Tk):
     self.geometry('450x550' if platform.system() == 'Windows' else '500x600')
     self.title('Administrator parole')
     self.resizable(width=False, height=False)
-    self.iconbitmap(utils.get_resource_path('images', 'icon.ico'))
+
+    if platform.system() != 'Windows':
+      icon = tk.PhotoImage(file=utils.get_resource_path('images', 'icon.gif'))
+      self.tk.call('wm', 'iconphoto', self._w, icon)
+    else:
+      self.iconbitmap(utils.get_resource_path('images', 'icon.ico'))
 
     self.frame = None
     self.show_start_screen()
