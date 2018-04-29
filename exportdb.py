@@ -85,7 +85,7 @@ class ExportDbScreen(ttk.Frame):
 
   def choose_click(self):
     choice = filedialog.asksaveasfilename(title='Alege numele fișierului')
-    if choice == '':
+    if not choice:
       return
 
     if not choice.endswith('.db'):

@@ -79,7 +79,7 @@ class ImportDbScreen(ttk.Frame):
 
   def choose_click(self):
     choice = filedialog.askopenfilename(title='Alege baza de date', filetypes=[('Bază de date', '*.db')])
-    if choice == '':
+    if not choice:
       return
 
     self.path.set(choice)    
