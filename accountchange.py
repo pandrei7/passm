@@ -17,7 +17,20 @@ import user
 import utils
 
 class AccountChangeScreen(ttk.Frame):
+  """ Model the screen where the user can change account data. 
+  
+  This screen can be used both to modify an existing account
+  and to create a new one.
+  """
+
   def __init__(self, parent, us, acc=None):
+    """ Initialise the frame. 
+    
+    :param parent: the controller of the frame
+    :param us: the User who owns the Account
+    :param acc: the Account; if None, assumes a new account
+    """
+
     ttk.Frame.__init__(self, parent)
     self.controller = parent
     self.us = us
@@ -31,9 +44,11 @@ class AccountChangeScreen(ttk.Frame):
     self.place_main_gui()
     self.place_button_gui()
 
+    self.is_new_account = (acc is None)
     self.load_account_data()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text='Detaliile contului')
@@ -92,12 +107,15 @@ class AccountChangeScreen(ttk.Frame):
     self.error_label.grid(row=9, column=0, pady=(10, 10))
 
   def place_button_gui(self):
+    """ Place the GUI buttons in the frame. """
     cont = self.container
 
+    # Container used for centring.
     but_cont = ttk.Frame(cont)
     but_cont.grid(row=10, column=0, sticky='ew')
     tku.prepare_centering(but_cont)
 
+    # Container that holds the actual buttons.
     but_cont2 = ttk.Frame(but_cont)
     but_cont2.grid(row=1, column=1)
 
@@ -117,18 +135,25 @@ class AccountChangeScreen(ttk.Frame):
     self.pass_button.grid(row=0, column=2, sticky='ns', padx=5)
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_account_display_screen(self.us)
 
   def save_click(self):
+    """ Save the modified account data. """
     acc_name = self.name_entry.get()
-    if len(acc_name) <= 0:
-      self.error_label.config(text='Introdu numele contului.')
-      return
-
     email = self.email_entry.get()
     username = self.user_entry.get()
     password = self.pass_entry.get()
 
+    if not acc_name:
+      self.error_label.config(text='Introdu numele contului.')
+      return
+
+    if self.is_new_account and accountdb.account_exists(self.us, acc_name):
+      self.error_label.config(text='Un cont cu acest nume există deja.')
+      return
+
+    # Let the user know what's happening.
     self.error_label.config(text='Se salvează...')
     self.error_label.update()
 
@@ -138,9 +163,11 @@ class AccountChangeScreen(ttk.Frame):
     self.error_label.config(text='Detaliile contului au fost salvate.')
 
     self.acc = acc
+    self.is_new_account = False
     self.load_account_data()
 
   def pass_click(self):
+    """ Open the password generator window. """
     son = tk.Toplevel(self)
     son.wm_title('Generator parolă')
     son.wm_resizable(width=False, height=False)
@@ -159,6 +186,7 @@ class AccountChangeScreen(ttk.Frame):
     gen.grid()
 
   def load_account_data(self):
+    """ Display the data of the account on the screen. """
     if self.acc is None:
       return
 
