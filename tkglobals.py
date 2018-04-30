@@ -1,3 +1,5 @@
+""" Contain global values used in tkinter configurations. """
+
 from tkinter import font
 
 def regular_font():

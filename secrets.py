@@ -1,3 +1,5 @@
+""" Contain crytographic functions. """
+
 from cryptography.fernet import Fernet
 
 from cryptography.hazmat.backends import default_backend
@@ -15,18 +17,22 @@ DERIVATION_SALT = r'i9f@zkx}mjivbe8OwzldwpmjhS(7O{bhxxN!RvT|2W"y-U"ZQpfF"3ZlzqS#
 
 
 def field_crypt_key():
+  """ Return the crypt-key for fields. """
   return es.decrypt(FIELD_CRYPT_KEY)
 
 
 def derivation_salt():
+  """ Return the derivation salt. """
   return es.decrypt(DERIVATION_SALT)
 
 
 def random_fernet_key():
+  """ Return a random Fernet key. """
   return Fernet.generate_key().decode('utf8')
 
 
 def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
+  """ Return a random password that matches the chosen options. """
   chars = ''
   chars += string.ascii_lowercase if lower else ''
   chars += string.ascii_uppercase if upper else ''
@@ -38,6 +44,7 @@ def random_password(length=64, lower=True, upper=True, digits=True, punct=True):
   return ''.join(random.choices(chars, k=length))
 
 def derive_fernet_key(password):
+  """ Return a Fernet key derived from a normal password. """
   kdf = PBKDF2HMAC(
       algorithm=hashes.SHA256(),
       length=32,
@@ -51,6 +58,7 @@ def derive_fernet_key(password):
 
 
 def encrypt_data(key, data):
+  """ Return the data as an encrypted string. """
   key = key.encode('utf8')
   text = data.encode('utf8')
   f = Fernet(key)
@@ -58,10 +66,12 @@ def encrypt_data(key, data):
 
 
 def encrypt_field(data):
+  """ Return the data as a string encrypted like a database field. """
   return encrypt_data(field_crypt_key(), data)
 
 
 def decrypt_data(key, data):
+  """ Return the data as a decrypted string. """
   key = key.encode('utf8')
   text = data.encode('utf8')
   f = Fernet(key)
@@ -69,5 +79,6 @@ def decrypt_data(key, data):
 
 
 def decrypt_field(data):
+  """ Return the data as a string decrypted like a database field. """
   return decrypt_data(field_crypt_key(), data)
 

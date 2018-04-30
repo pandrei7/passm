@@ -5,7 +5,7 @@ import user
 import utils
 
 class AccountExistsException(Exception):
-  """ Signal that an account already exists when it should not. """
+  """ Signal that an account already exists when it shouldn't. """
 
   def __init__(self, name):
     """ Initialize the object. """
@@ -44,10 +44,10 @@ def get_accounts_by_name_exact(us, name):
 
 
 def get_accounts_by_name(us, name):
-  """ Return all accounts whose names contain a word.
+  """ Return all accounts whose names contain a substring.
 
   :param us: the User who owns the accounts
-  :param name: the word that is searched
+  :param name: the substring that is searched
   """
   query_string = '%' + name + '%'
   return get_accounts_by_name_exact(us, query_string)

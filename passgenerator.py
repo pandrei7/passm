@@ -10,7 +10,14 @@ import hidebutton
 import secrets
 
 class PassGeneratorFrame(ttk.Frame):
+  """ Model the random password generation screen. """
+
   def __init__(self, parent):
+    """ Initialize the frame.
+    
+    :param parent: the controller of the frame
+    """
+
     ttk.Frame.__init__(self, parent)
     self.parent = parent
 
@@ -21,11 +28,13 @@ class PassGeneratorFrame(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     title = ttk.Label(self, text='Generează o parolă')
     title.config(font=tkg.title_font())
     title.grid(row=0, column=0, sticky='w', padx=(10, 0), pady=5)
 
   def place_scale_gui(self):
+    """ Place the scale-related GUI in the frame. """
     label1 = ttk.Label(self, text='Alege lungimea parolei')
     label1.config(font=tkg.regular_font())
     label1.grid(row=1, column=0, sticky='w', padx=(10, 0), pady=(5, 0))
@@ -35,6 +44,7 @@ class PassGeneratorFrame(ttk.Frame):
     self.scale.grid(row=2, column=0, padx=5, pady=5)
 
   def place_check_gui(self):
+    """ Place the checkbutton-related GUI in the frame. """
     label2 = ttk.Label(self, text='Include')
     label2.config(font=tkg.regular_font())
     label2.grid(row=3, column=0, sticky='w', padx=(10, 0), pady=5)
@@ -66,6 +76,7 @@ class PassGeneratorFrame(ttk.Frame):
     self.punct.grid(row=0, column=3, padx=5, pady=5)
 
   def place_entry_gui(self):
+    """ Place the entry-related GUI in the frame. """
     entry_cont = ttk.Frame(self, width=432, height=40)
     if platform.system() != 'Windows':
       entry_cont.config(width=482)
@@ -83,6 +94,7 @@ class PassGeneratorFrame(ttk.Frame):
     self.clip_button.pack(side=tk.LEFT, padx=(2, 0))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     style = ttk.Style()
     style.configure('PGF.TButton', font=tkg.regular_font_tuple())
 
@@ -91,6 +103,7 @@ class PassGeneratorFrame(ttk.Frame):
     self.button.grid(row=6, column=0, padx=(10, 0), pady=5)
 
   def click(self):
+    """ Generate and display a random password. """
     lower = (self.use_lower.get() == 1)
     upper = (self.use_upper.get() == 1)
     digits = (self.use_digits.get() == 1)

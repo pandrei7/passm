@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter.ttk import *
 
 from tkinter import filedialog
 
@@ -12,7 +11,15 @@ from cryptography.fernet import InvalidToken
 import sharing
 
 class ImportDbScreen(ttk.Frame):
+  """ Model the screen where a user can import a database. """
+
   def __init__(self, parent, us):
+    """ Initialize the frame.
+
+    :param parent: the controller of the frame
+    :param us: the User who imports the database
+    """    
+    
     ttk.Frame.__init__(self, parent)
     self.controller = parent
     self.us = us
@@ -29,6 +36,7 @@ class ImportDbScreen(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text='Importă o bază de date')
@@ -53,6 +61,7 @@ class ImportDbScreen(ttk.Frame):
     self.error_label.grid(row=5, column=0, pady=(10, 0))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
     style = ttk.Style()
@@ -62,10 +71,12 @@ class ImportDbScreen(ttk.Frame):
     self.choose_button.config(style='IDS.TButton', command=self.choose_click)
     self.choose_button.grid(row=1, column=0, sticky='ew', pady=(30, 0))
 
+    # This container is used for centering.
     but_cont = ttk.Frame(cont)
     but_cont.grid(row=6, column=0)
     tku.prepare_centering(but_cont)
 
+    # This container actually holds the buttons.
     but_cont2 = ttk.Frame(but_cont)
     but_cont2.grid(row=1, column=1, pady=(10, 0))
 
@@ -78,6 +89,7 @@ class ImportDbScreen(ttk.Frame):
     self.import_button.grid(row=0, column=1, padx=5)
 
   def choose_click(self):
+    """ Open a file dialog to choose a file name. """
     choice = filedialog.askopenfilename(title='Alege baza de date', filetypes=[('Bază de date', '*.db')])
     if not choice:
       return
@@ -85,16 +97,18 @@ class ImportDbScreen(ttk.Frame):
     self.path.set(choice)    
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_user_menu_screen(self.us)
 
   def import_click(self):
+    """ Import the database from the chosen path. """
     path = self.path.get()
-    if path == '':
+    if not path:
       self.error_label.config(text='Alege baza de date.')
       return
 
     password = self.pass_entry.get()
-    if password == '':
+    if not password:
       self.error_label.config(text='Introdu parola.')
       return
 

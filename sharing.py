@@ -1,3 +1,5 @@
+""" Contain functions for importing and exporting account databases. """
+
 import sqlite3
 
 import account
@@ -6,6 +8,10 @@ import secrets
 import user
 
 def create_sharing_database(path):
+  """ Create a database that can be shared at the specified path. 
+  
+  If the database already exists, it is overwritten.
+  """
   with sqlite3.connect(path) as conn:
     c = conn.cursor()
     c.execute('''DROP TABLE IF EXISTS accounts;''')
@@ -14,6 +20,11 @@ def create_sharing_database(path):
 
 
 def populate_sharing_database(path, acc):
+  """ Populate a database with accounts.
+
+  :param path: the path of the database
+  :param acc: a list including all the accounts to be inserted
+  """  
   with sqlite3.connect(path) as conn:
     c = conn.cursor()
     for a in acc:
@@ -22,6 +33,13 @@ def populate_sharing_database(path, acc):
 
 
 def export_database(us, path, password):
+  """ Export a user's database with the specified password.
+
+  :param us: the User who owns the database
+  :param path: the path where the database gets exported
+  :param password: the new password for the database
+  """
+
   user_key = secrets.decrypt_field(us.crypt_key)
   new_key = secrets.derive_fernet_key(password)
 
@@ -37,6 +55,7 @@ def export_database(us, path, password):
   
     
 def get_sharing_accounts(path):
+  """ Return all acounts from a sharing database. """
   with sqlite3.connect(path) as conn:
     c = conn.cursor()
     c.execute('''SELECT * FROM accounts;''')
@@ -44,7 +63,17 @@ def get_sharing_accounts(path):
 
 
 def import_database(us, path, password):
-  # Create the user database if it does not exist
+  """ Import a database for the specified user.
+
+  The accounts which already exist in the user's database
+  do not get replaced.
+
+  :param us: the User who imports the database
+  :param path: the path where the database is located
+  :param password: the password with which the database was encrypted
+  """
+
+  # Create the user's database if it does not exist.
   accountdb.create_database(us)
   
   user_key = secrets.decrypt_field(us.crypt_key)

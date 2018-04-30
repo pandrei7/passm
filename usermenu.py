@@ -11,7 +11,15 @@ import passgenerator
 import utils
 
 class UserMenuScreen(ttk.Frame):
+  """ Model the user menu screen. """
+
   def __init__(self, parent, us):
+    """ Initialize the frame.
+
+    :param parent: the controller of the frame
+    :param us: the User whose menu is displayed
+    """
+
     ttk.Frame.__init__(self, parent)
     self.controller = parent
     self.us = us
@@ -25,6 +33,7 @@ class UserMenuScreen(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text=self.us.name)
@@ -32,6 +41,7 @@ class UserMenuScreen(ttk.Frame):
     self.title.grid(row=0, column=0, sticky='w', padx=15, pady=(10, 20))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
     style = ttk.Style()
@@ -58,9 +68,11 @@ class UserMenuScreen(ttk.Frame):
     self.back_button.grid(row=5, column=0, padx=10, pady=7)
 
   def acc_click(self):
+    """ Go to the user's accounts display screen. """
     self.controller.show_account_display_screen(self.us)
 
   def pass_click(self):
+    """ Open the password generator window. """
     son = tk.Toplevel(self)
     son.wm_title('Generator parolă')
     son.wm_resizable(width=False, height=False)
@@ -79,11 +91,14 @@ class UserMenuScreen(ttk.Frame):
     gen.grid()
 
   def export_click(self):
+    """ Go to the database export screen. """
     self.controller.show_export_screen(self.us)
 
   def import_click(self):
+    """ Go to the database import screen. """
     self.controller.show_import_screen(self.us)
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_start_screen()
 

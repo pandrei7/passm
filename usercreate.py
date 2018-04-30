@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
@@ -10,7 +9,13 @@ import user
 import userdb
 
 class UserCreateScreen(ttk.Frame):
+  """ Model the user creation screen. """
+
   def __init__(self, parent):
+    """ Initialize the frame.
+
+    :param parent: the controller of the frame
+    """
     ttk.Frame.__init__(self, parent)
     self.controller = parent
 
@@ -23,6 +28,7 @@ class UserCreateScreen(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text='Creează cont nou')
@@ -58,12 +64,15 @@ class UserCreateScreen(ttk.Frame):
     self.error_label.grid(row=7, column=0, pady=(10, 0))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
+    # This container is used for centering.
     but_cont = ttk.Frame(cont)
     but_cont.grid(row=8, column=0)
     tku.prepare_centering(but_cont)
 
+    # This container actually holds the buttons.
     but_cont2 = ttk.Frame(but_cont)
     but_cont2.grid(row=1, column=1, pady=(10, 0))
 
@@ -79,11 +88,13 @@ class UserCreateScreen(ttk.Frame):
     self.create_button.grid(row=0, column=1, padx=5)
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_start_screen()
 
   def create_click(self):
+    """ Try to create a user with the entered data. """
     name = self.user_entry.get()
-    if name == '':
+    if not name:
       self.error_label.config(text='Introdu numele utilizatorului.')
       self.clear_password_fields()
       return
@@ -98,6 +109,8 @@ class UserCreateScreen(ttk.Frame):
       self.clear_password_fields()
       return
 
+    # Do not allow the user to have a name that would clash with
+    # the users-database name.
     if name == userdb.DB_NAME:
       self.error_label.config(text='Ai ales un nume interesant, dar\neste deja rezervat. Îmi pare rău.')
       self.clear_password_fields()
@@ -105,7 +118,7 @@ class UserCreateScreen(ttk.Frame):
 
     pass1 = self.pass_entry1.get()
     pass2 = self.pass_entry2.get()
-    if pass1 == '' or pass2 == '':
+    if not pass1 or not pass2:
       self.error_label.config(text='Introdu parolele.')
       self.clear_password_fields()
       return
@@ -123,6 +136,7 @@ class UserCreateScreen(ttk.Frame):
     self.add_to_database(name, pass1)
 
   def add_to_database(self, name, password):
+    """ Add a user with the entered data.  """
     us = user.create_user(name, password)
     try:
       userdb.insert_user(us)
@@ -133,6 +147,7 @@ class UserCreateScreen(ttk.Frame):
     self.clear_password_fields()
 
   def clear_password_fields(self):
+    """ Empty the password fields. """
     self.pass_entry1.delete(0, tk.END)
     self.pass_entry2.delete(0, tk.END)
 

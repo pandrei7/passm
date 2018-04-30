@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
@@ -10,7 +9,14 @@ import accountdb
 import user
 
 class AccountDisplayScreen(ttk.Frame):
+  """ Model the screen which displays a user's list of accounts. """
+
   def __init__(self, parent, us):
+    """ Initialize the frame.
+    
+    :param parent: the controller of the frame
+    :param us: the User who owns the accounts
+    """
     ttk.Frame.__init__(self, parent)
     self.controller = parent
     self.us = us
@@ -26,6 +32,7 @@ class AccountDisplayScreen(ttk.Frame):
     self.load_accounts()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text=self.us.name)
@@ -49,6 +56,7 @@ class AccountDisplayScreen(ttk.Frame):
     self.listbox.bind('<Double-Button-1>', self.mod_click_decorator)
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
     style = ttk.Style()
@@ -83,7 +91,15 @@ class AccountDisplayScreen(ttk.Frame):
     self.search_button.grid(row=5, column=1, sticky='ew', padx=(20, 0))
 
   def load_accounts(self, query=''):
+    """ Load all accounts that meet a criteria on the screen. 
+    
+    Only accounts whose names contain the query as a substring
+    are displayed on the screen.
+    """
+
     # Create user's database if it does not exist (possible bug).
+    # This might be needed if the user's database file is deleted
+    # outside the app.
     accountdb.create_database(self.us)
 
     self.listbox.delete(0, tk.END)
@@ -94,12 +110,14 @@ class AccountDisplayScreen(ttk.Frame):
       self.listbox.insert(tk.END, a.name)
 
   def add_click(self):
+    """ Go to the add-new-account screen. """
     self.controller.show_account_change_screen(self.us, None)
 
   def mod_click_decorator(self, aux):
     self.mod_click()
 
   def mod_click(self):
+    """ Modify the account selected by the user. """
     selection = self.listbox.curselection()
     if len(selection) <= 0:
       return
@@ -110,6 +128,7 @@ class AccountDisplayScreen(ttk.Frame):
     self.controller.show_account_change_screen(self.us, acc)
 
   def delete_click(self):
+    """ Delete the account selected by the user. """
     selection = self.listbox.curselection()
     if len(selection) <= 0:
       return
@@ -121,9 +140,11 @@ class AccountDisplayScreen(ttk.Frame):
     self.load_accounts()
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_user_menu_screen(self.us)
 
   def search_click(self):
+    """ Load the accounts which meet the search-criteria. """
     query = self.search_entry.get()
     self.load_accounts(query)
 

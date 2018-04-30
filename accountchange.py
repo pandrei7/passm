@@ -24,7 +24,7 @@ class AccountChangeScreen(ttk.Frame):
   """
 
   def __init__(self, parent, us, acc=None):
-    """ Initialise the frame. 
+    """ Initialize the frame. 
     
     :param parent: the controller of the frame
     :param us: the User who owns the Account
@@ -107,15 +107,15 @@ class AccountChangeScreen(ttk.Frame):
     self.error_label.grid(row=9, column=0, pady=(10, 10))
 
   def place_button_gui(self):
-    """ Place the GUI buttons in the frame. """
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
-    # Container used for centring.
+    # This container is used for centering.
     but_cont = ttk.Frame(cont)
     but_cont.grid(row=10, column=0, sticky='ew')
     tku.prepare_centering(but_cont)
 
-    # Container that holds the actual buttons.
+    # This container actually holds the buttons.
     but_cont2 = ttk.Frame(but_cont)
     but_cont2.grid(row=1, column=1)
 
@@ -153,7 +153,7 @@ class AccountChangeScreen(ttk.Frame):
       self.error_label.config(text='Un cont cu acest nume există deja.')
       return
 
-    # Let the user know what's happening.
+    # Tell the user what's happening.
     self.error_label.config(text='Se salvează...')
     self.error_label.update()
 

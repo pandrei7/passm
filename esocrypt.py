@@ -1,18 +1,28 @@
+""" Contain functions for the EsoCrypt algorithm. """
+
 import random
 
 def random_uppercase():
+  """ Return a random uppercase ASCII letter. """
   return chr(ord('A') + random.randint(0, 25))
 
 
 def random_lowercase():
+  """ Return a random lowercase ASCII letter. """
   return chr(ord('a') + random.randint(0, 25))
 
 
 def random_bool():
+  """ Return a random boolean. """
   return random.choice([True, False])
 
 
 def offset_char(ch, offset):
+  """ Offset a character by a certain amount. 
+  
+  If offset is a positive value, the character gets shifted forwards,
+  and if it is negative, the character gets shifted backwards.
+  """
   left_end = ord(' ')
   right_end = ord('~')
   num = ord(ch) + offset
@@ -25,6 +35,7 @@ def offset_char(ch, offset):
 
 
 def encrypt(data):
+  """ Encrypt data using the EsoCrypt algorithm. """
   step = 6
   offset = 0
   encrypted = random_uppercase() if random_bool() else random_lowercase()
@@ -45,6 +56,7 @@ def encrypt(data):
 
 
 def decrypt(data):
+  """ Decrypt data using the EsoCrypt algorithm. """
   step = 6
   countdown = 0
   offset = 0
