@@ -4,36 +4,36 @@ import tkinter as tk
 import utils
 
 class ClipButton(tk.Button):
-    def __init__(self, parent, entry, pop_title=None, pop_message=None):
-        tk.Button.__init__(self, parent)
-        self.parent = parent
-        self.entry = entry
+  def __init__(self, parent, entry, pop_title=None, pop_message=None):
+    tk.Button.__init__(self, parent)
+    self.parent = parent
+    self.entry = entry
 
-        self.title = pop_title
-        if self.title is None:
-            self.title = 'Copiat!'
+    self.title = pop_title
+    if self.title is None:
+      self.title = 'Copiat!'
 
-        self.message = pop_message
-        if self.message is None:
-            self.message = ('Am copiat textul.\n'
-                            'Îl poți lipi doar dacă aplicația este deschisă.')
+    self.message = pop_message
+    if self.message is None:
+      self.message = ('Am copiat textul.\n'
+                      'Îl poți lipi doar dacă aplicația este deschisă.')
 
-        image_path = utils.get_resource_path('images', 'clipboard.gif')
-        self.image = tk.PhotoImage(file=image_path)
+    image_path = utils.get_resource_path('images', 'clipboard.gif')
+    self.image = tk.PhotoImage(file=image_path)
 
-        self.config(image=self.image)
-        self.config(command=self.click)
+    self.config(image=self.image)
+    self.config(command=self.click)
 
-    def pop_up(self):
-        showinfo(title=self.title, message=self.message, parent=self)
+  def pop_up(self):
+    showinfo(title=self.title, message=self.message, parent=self)
 
-    def click(self):
-        r = tk.Tk()
-        r.withdraw()
-        r.clipboard_clear()
-        r.clipboard_append(self.entry.get())
-        r.update()
-        r.destroy()
+  def click(self):
+    r = tk.Tk()
+    r.withdraw()
+    r.clipboard_clear()
+    r.clipboard_append(self.entry.get())
+    r.update()
+    r.destroy()
 
-        self.pop_up()
+    self.pop_up()
 
