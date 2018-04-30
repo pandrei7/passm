@@ -9,7 +9,14 @@ import userdb
 import utils
 
 class StartScreen(ttk.Frame):
+  """ Model the start screen. """
+
   def __init__(self, parent):
+    """ Initialize the frame.
+
+    :param parent: the controller of the frame.
+    """
+
     ttk.Frame.__init__(self, parent)
     self.controller = parent
 
@@ -24,6 +31,7 @@ class StartScreen(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     top_cont = ttk.Frame(cont)
@@ -39,6 +47,7 @@ class StartScreen(ttk.Frame):
     self.title.grid(row=0, column=1, sticky='e', padx=10, pady=10)
 
   def place_entry_gui(self):
+    """ Place the entry-related GUI in the frame. """
     cont = self.container
 
     bot_cont = ttk.Frame(cont)
@@ -69,6 +78,7 @@ class StartScreen(ttk.Frame):
     self.error_label.grid(row=4, column=0, sticky='ew', pady=(5, 0))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     style = ttk.Style()
     style.configure('SS.TButton', font=tkg.button_regular_font_tuple())
 
@@ -85,21 +95,23 @@ class StartScreen(ttk.Frame):
     self.delete_button.grid(row=7, column=0, sticky='ew', pady=(5, 10))
 
   def enter_click(self):
+    """ Log in the user. """
     name = self.user_entry.get()
-    if len(name) <= 0:
+    if not name:
       self.error_label.config(text='Introdu numele utilizatorului.')
       return
 
     password = self.pass_entry.get()
-    if len(password) <= 0:
+    if not password:
       self.error_label.config(text='Introdu parola.')
       return
 
+    # Tell the user what's happening.
     self.error_label.config(text='Verific parola...')
     self.error_label.update()
 
     try:
-      if userdb.password_check(name, password):
+      if userdb.check_password(name, password):
         self.error_label.config(text='Intru în cont...')
         self.error_label.update()
         us = userdb.get_users_by_name(name)[0]
@@ -113,11 +125,14 @@ class StartScreen(ttk.Frame):
       return
 
   def new_click(self):
+    """ Go to the user-creation screen. """
     self.controller.show_user_create_screen()
 
   def delete_click(self):
+    """ Go to the user-deletion screen. """
     self.controller.show_user_delete_screen()
 
   def clear_password_field(self):
+    """ Empty the password field. """
     self.pass_entry.delete(0, tk.END)
 

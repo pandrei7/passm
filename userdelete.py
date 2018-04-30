@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter.ttk import *
 
 import tkglobals as tkg
 import tkinter as tk
@@ -10,7 +9,13 @@ import user
 import userdb
 
 class UserDeleteScreen(ttk.Frame):
+  """ Model the user deletion screen. """
+
   def __init__(self, parent):
+    """ Initialize the frame.
+
+    :param parent: the controller of the frame
+    """
     ttk.Frame.__init__(self, parent)
     self.controller = parent
 
@@ -23,6 +28,7 @@ class UserDeleteScreen(ttk.Frame):
     self.place_button_gui()
 
   def place_main_gui(self):
+    """ Place the simple GUI objects in the frame. """
     cont = self.container
 
     self.title = ttk.Label(cont, text='Șterge un cont')
@@ -58,12 +64,15 @@ class UserDeleteScreen(ttk.Frame):
     self.error_label.grid(row=7, column=0, pady=(10, 0))
 
   def place_button_gui(self):
+    """ Place the button-related GUI in the frame. """
     cont = self.container
 
+    # This container is used for centering.
     but_cont = ttk.Frame(cont)
     but_cont.grid(row=8, column=0)
     tku.prepare_centering(but_cont)
 
+    # This container actually holds the buttons.
     but_cont2 = ttk.Frame(but_cont)
     but_cont2.grid(row=1, column=1, pady=(10, 0))
 
@@ -83,18 +92,20 @@ class UserDeleteScreen(ttk.Frame):
     self.delete_button.grid(row=0, column=1, sticky='ns', padx=5)
 
   def back_click(self):
+    """ Go to the previous screen. """
     self.controller.show_start_screen()
 
   def delete_click(self):
+    """ Try to delete the user with the entered data. """
     name = self.user_entry.get()
-    if name == '':
+    if not name:
       self.error_label.config(text='Introdu numele utilizatorului.')
       self.clear_password_fields()
       return
 
     pass1 = self.pass_entry1.get()
     pass2 = self.pass_entry2.get()
-    if pass1 == '' or pass2 == '':
+    if not pass1 or not pass2:
       self.error_label.config(text='Introdu parolele.')
       self.clear_password_fields()
       return
@@ -108,6 +119,7 @@ class UserDeleteScreen(ttk.Frame):
     self.clear_password_fields()
 
   def remove_from_database(self, name, password):
+    """ Remove the user with the entered data. """
     us = userdb.get_users_by_name_exact(name)
     if len(us) <= 0:
       self.error_label.config(text='Nu am găsit niciun\nutilizator cu acest nume.')
@@ -117,7 +129,7 @@ class UserDeleteScreen(ttk.Frame):
       return
 
     try:
-      if userdb.password_check(name, password):
+      if userdb.check_password(name, password):
         us = user.unpack(us[0])
         userdb.delete_user(us)
         accountdb.delete_database(us)
@@ -128,6 +140,7 @@ class UserDeleteScreen(ttk.Frame):
       self.error_label.config(text="Are you trying to cheat?\nYou're so funny, " + name + ".")
 
   def clear_password_fields(self):
+    """ Empty the password fields. """
     self.pass_entry1.delete(0, tk.END)
     self.pass_entry2.delete(0, tk.END)
 
