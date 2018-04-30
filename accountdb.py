@@ -58,6 +58,12 @@ def get_all_accounts(us):
   return get_accounts_by_name(us, '')
 
 
+def account_exists(us, name):
+  """ Check if an account with a given name exists. """
+  present = get_accounts_by_name_exact(us, name)
+  return len(present) > 0
+
+
 def insert_account(us, acc):
   """ Insert a new account in the user's database.
 
@@ -65,7 +71,7 @@ def insert_account(us, acc):
   :param acc: the new Account
   :raises AccountExistsException: if the account already exists
   """
-  if get_accounts_by_name_exact(us, acc.name):
+  if account_exists(us, acc.name):
     raise AccountExistsException(acc.name)
 
   path = get_db_path(us)
@@ -98,7 +104,7 @@ def update_account_data(us, acc):
 
 
 def change_account(us, acc):
-  """ Change an existing account or insert a new one. """
+  """ Insert a new account or change the existing one. """
   try:
     insert_account(us, acc)
   except AccountExistsException:
