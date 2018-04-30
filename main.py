@@ -1,5 +1,4 @@
 from tkinter import ttk
-from tkinter.ttk import *
 
 import tkinter as tk
 
